@@ -703,8 +703,9 @@ RM-2993-PR (Rand Corporation Memorandum to U.S. Air Force Research Headquarters)
 </div>
 <div class="section" id="addendum-python-mip">
 <h2>Addendum <code class="docutils literal notranslate"><span class="pre">Python-MIP</span></code><a class="headerlink" href="#addendum-python-mip" title="Permalink to this headline">¶</a></h2>
-<p>Python-MIP is one of many LP solvers avaialble on the mighty internet; it is used in this course because it appears to run on a Raspberry Pi withou a lot of fuss (this is an architecture issue, for students using X86-64 machines, the Anaconda install should be just fine, and you can use any LP solver you wish).</p>
-<p>MIP means mixed integer programs, which are hard to solve efficiently.  The example below is the script to solve a knapsack problem.</p>
+<p>Python-MIP is one of many LP solvers avaialble on the mighty internet; it is architecture specific, for students using X86-64 machines, the Anaconda install should be just fine, and you can use any LP solver you wish)</p>
+<p>MIP means mixed integer programs, which are hard to solve efficiently.  The example below is a script to solve a knapsack problem, but it has to be run on a X86-64 architecture (the libraries do not have the necessary ARM .so modules)</p>
+<p>To install sudo -H /opt/jupyterhub/bin/python3 -m pip install mip</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mip</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">xsum</span><span class="p">,</span> <span class="n">maximize</span><span class="p">,</span> <span class="n">BINARY</span> <span class="c1"># need to install mip into the kernel first!!</span>
 
 <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>

@@ -245,11 +245,13 @@ for i in range(n_warehouses):
 
 # ## Addendum `Python-MIP`
 # 
-# Python-MIP is one of many LP solvers avaialble on the mighty internet; it is used in this course because it appears to run on a Raspberry Pi withou a lot of fuss (this is an architecture issue, for students using X86-64 machines, the Anaconda install should be just fine, and you can use any LP solver you wish).
+# Python-MIP is one of many LP solvers avaialble on the mighty internet; it is architecture specific, for students using X86-64 machines, the Anaconda install should be just fine, and you can use any LP solver you wish)
 # 
-# MIP means mixed integer programs, which are hard to solve efficiently.  The example below is the script to solve a knapsack problem.
+# MIP means mixed integer programs, which are hard to solve efficiently.  The example below is a script to solve a knapsack problem, but it has to be run on a X86-64 architecture (the libraries do not have the necessary ARM .so modules)
 # 
 
+# To install sudo -H /opt/jupyterhub/bin/python3 -m pip install mip
+# 
 # ```
 # from mip import Model, xsum, maximize, BINARY # need to install mip into the kernel first!!
 # 
