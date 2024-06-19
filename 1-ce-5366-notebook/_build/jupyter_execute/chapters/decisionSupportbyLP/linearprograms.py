@@ -249,9 +249,9 @@ for i in range(n_warehouses):
 # 
 # MIP means mixed integer programs, which are hard to solve efficiently.  The example below is a script to solve a knapsack problem, but it has to be run on a X86-64 architecture (the libraries do not have the necessary ARM .so modules)
 # 
+# To install the module something like `sudo -H /opt/jupyterhub/bin/python3 -m pip install mip` should work. 
+# It depends on your specific build. 
 
-# To install sudo -H /opt/jupyterhub/bin/python3 -m pip install mip
-# 
 # ```
 # from mip import Model, xsum, maximize, BINARY # need to install mip into the kernel first!!
 # 
