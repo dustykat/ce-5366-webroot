@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -312,6 +314,23 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-linear-programs">
+   Solving Linear Programs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#danzig-s-algorithm-simplex-method">
+     Danzig’s Algorithm (Simplex Method):
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#practical-implementation">
+     Practical Implementation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#example-using-scipy">
    Example using
    <code class="docutils literal notranslate">
@@ -319,6 +338,31 @@
      scipy
     </span>
    </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-using-pulp">
+   Example using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     PuLP
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-using-r">
+   Example using
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     R
+    </span>
+   </code>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -339,8 +383,56 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="linear-programming-for-decision-support">
 <h1>Linear Programming for Decision Support<a class="headerlink" href="#linear-programming-for-decision-support" title="Permalink to this headline">¶</a></h1>
+<p>Linear Programming (LP) is a powerful mathematical technique used for optimization. It involves maximizing or minimizing a <strong>linear</strong> objective function, subject to a set of <strong>linear</strong> constraints. The objective function represents the quantity to be optimized (such as profit or cost), while the constraints define the limitations or conditions within which the optimization must occur (like resource availability or production capacities).</p>
+<p>LP is widely applied in various fields such as economics, engineering, business management, and logistics, where decisions need to be made to allocate limited resources efficiently. The method is particularly valuable because it provides a systematic way to find the best possible solution given these constraints, ensuring optimal decision-making and resource allocation. Through LP, complex real-world problems can be transformed into a structured mathematical framework, facilitating informed decision-making and maximizing outcomes.</p>
+<div class="section" id="solving-linear-programs">
+<h2>Solving Linear Programs<a class="headerlink" href="#solving-linear-programs" title="Permalink to this headline">¶</a></h2>
+<p>Danzig’s algorithm also known as the simplex method, is a fundamental technique within Linear Programming for solving optimization problems. Developed by George Dantzig in the late 1940s, it revolutionized the field by providing an efficient way to find the optimal solution to linear programming problems.</p>
+<p>Here’s how Danzig’s algorithm fits into the broader context of Linear Programming:
+Linear Programming (LP):</p>
+<p>LP involves optimizing a linear objective function subject to linear constraints. The general form is: <br></p>
+<p>Maximize: <span class="math notranslate nohighlight">\(c^T x\)</span> <br>
+Subject to:
+<span class="math notranslate nohighlight">\(Ax &lt;= b\)</span>;<span class="math notranslate nohighlight">\(Ix &gt;= 0\)</span></p>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> is the vector of decision variables to be determined,</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span> is the vector of coefficients representing the objective function to maximize,</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is the matrix of coefficients of the constraints,</p></li>
+<li><p><span class="math notranslate nohighlight">\(I\)</span> is the identity matrix</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> is the vector of constants on the right-hand side of the constraints.</p></li>
+</ul>
+<div class="section" id="danzig-s-algorithm-simplex-method">
+<h3>Danzig’s Algorithm (Simplex Method):<a class="headerlink" href="#danzig-s-algorithm-simplex-method" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Simplex_algorithm">Danzig’s algorithm</a> is an iterative procedure that systematically moves from one feasible solution to another along the edges of the feasible region until the optimal solution is found. The steps involved typically include:</p>
+<ul class="simple">
+<li><p>Initialization: Start with a feasible solution.</p></li>
+<li><p>Iteration: Move to an adjacent feasible solution that improves the objective function (if possible).</p></li>
+<li><p>Termination: Stop when no further improvements can be made, indicating the optimal solution has been reached.</p></li>
+</ul>
+<p>The simplex method operates by pivoting among the variables to gradually improve the objective function value. It ensures that each iteration moves closer to the optimal solution by following a strategic path through the vertices (corners) of the feasible region defined by the constraints.
+Benefits and Applications:</p>
+<ul class="simple">
+<li><p>Efficiency: Despite its theoretical worst-case exponential time complexity, the simplex method often performs efficiently in practice for many real-world problems.</p></li>
+<li><p>Versatility: It can handle large-scale linear programming problems with numerous variables and constraints, making it applicable in diverse fields such as economics (production planning), logistics (supply chain optimization), and finance (portfolio optimization).</p></li>
+<li><p>Optimality: Danzig’s algorithm <strong>guarantees</strong> finding the optimal solution under certain conditions, providing confidence in decision-making processes.</p></li>
+</ul>
+<p>The simplex method is a cornerstone of Linear Programming (there is a similarily named method in non-linear programming), offering a systematic approach to solving optimization problems by iteratively improving feasible solutions until the best possible outcome is achieved, within the constraints provided. Its practical applications and theoretical underpinnings make it indispensable in various industries for making informed decisions and optimizing resource allocations.</p>
+</div>
+<div class="section" id="practical-implementation">
+<h3>Practical Implementation<a class="headerlink" href="#practical-implementation" title="Permalink to this headline">¶</a></h3>
+<p>Except for really small (trivial) problems, LP is unworkable by hand.  Usually some specalized tool is used including:</p>
+<ol class="simple">
+<li><p><strong>MS Excel Solver Add-In</strong>.  Farily simple to implement, but limited in overall problem scale.  Many significant problems have millions of decision variables, Excel cannot handle those size problems. An internet search produces a lot of tutorials such as: <a class="reference external" href="https://www.msubillings.edu/asc/writingcenter/resources/math/tutorials/finitemathhelps/Lin%20Prog%20with%20Excel.pdf">Linear Programming with Solver</a></p></li>
+<li><p><strong>R Packages</strong>.  Harder to implement; requires some understanding of R libraries, but can handle larger scale problems and is far easier to automate multi-stage programming.  An example package is <span class="xref myst">dummy</span></p></li>
+<li><p><strong>Python Packages</strong>.  Like R, requires some understanding of python libraries, but can handle large scale problems, is inherently automatable.  An example is shown beloy using the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> kernel library; there are other libraries - see the reference list.  One thing to note is the python tools are very architecture dependent - some only work on Intel/AMD architecture (specific hardware) others are more general and can run on ARM architecture.  The example below runs fine on Raspberry Pi, or an Intel laptop, or an AWS virtual private server.</p></li>
+<li><p><strong>Commercial Software</strong> For really big problems, one will use commercial software such as <a class="reference external" href="https://lindo.com/">LINDO</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/MINOS_(optimization_software)">MINOS</a> or <a class="reference external" href="https://www.ibm.com/products/ilog-cplex-optimization-studio/cplex-optimizer">IBM CPLEX</a></p></li>
+</ol>
+</div>
+</div>
 <div class="section" id="example-using-scipy">
 <h2>Example using <code class="docutils literal notranslate"><span class="pre">scipy</span></code><a class="headerlink" href="#example-using-scipy" title="Permalink to this headline">¶</a></h2>
+<p>The example below is verbatim from <a class="reference external" href="https://realpython.com/linear-programming-python/">Mirko Stojiljković (2020) Hands-On Linear Programming: Optimization With Python. Real Python (Blog Post)</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linprog</span>
@@ -396,12 +488,212 @@
 </div>
 </div>
 </div>
+<div class="section" id="example-using-pulp">
+<h2>Example using <code class="docutils literal notranslate"><span class="pre">PuLP</span></code><a class="headerlink" href="#example-using-pulp" title="Permalink to this headline">¶</a></h2>
+<p>The example below is verbatim from <a class="reference external" href="https://towardsdatascience.com/linear-programming-using-python-priyansh-22b5ee888fe0">Priyansh Soni (2020) Linear Programming using Python. Towards Data Science (Blog Post)</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example does not play well with a Raspberry Pi, my guess is some apsect in PuLP is not compiling correctly for the ARM processor.
+The change in solver type produces correct output - this is typical for packages regardless of host type.  The user needs to mess with things to get it working.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pulp</span> <span class="kn">import</span> <span class="o">*</span> <span class="c1"># pulp needs to be installed into the kernel first</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">n_warehouses</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">n_customers</span> <span class="o">=</span> <span class="mi">4</span>
+
+<span class="c1"># Cost Matrix</span>
+<span class="n">cost_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">]])</span>
+<span class="c1"># Demand Matrix</span>
+<span class="n">cust_demands</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">35000</span><span class="p">,</span> <span class="mi">22000</span><span class="p">,</span> <span class="mi">18000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">])</span>
+
+<span class="c1"># Supply Matrix</span>
+<span class="n">warehouse_supply</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">60000</span><span class="p">,</span> <span class="mi">80000</span><span class="p">])</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LpProblem</span><span class="p">(</span><span class="s2">&quot;Supply-Demand-Problem&quot;</span><span class="p">,</span> <span class="n">LpMinimize</span><span class="p">)</span>
+
+<span class="n">variable_names</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_customers</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_warehouses</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">variable_names</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Variable Indices:&quot;</span><span class="p">,</span> <span class="n">variable_names</span><span class="p">)</span>
+
+<span class="n">DV_variables</span> <span class="o">=</span> <span class="n">LpVariable</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="n">variable_names</span><span class="p">,</span> <span class="n">cat</span> <span class="o">=</span> <span class="s2">&quot;Integer&quot;</span><span class="p">,</span> <span class="n">lowBound</span><span class="o">=</span> <span class="mi">0</span> <span class="p">)</span>
+<span class="n">allocation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">DV_variables</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decision Variable/Allocation Matrix: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">allocation</span><span class="p">)</span>
+
+<span class="n">obj_func</span> <span class="o">=</span> <span class="n">lpSum</span><span class="p">(</span><span class="n">allocation</span><span class="o">*</span><span class="n">cost_matrix</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">obj_func</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">+=</span>  <span class="n">obj_func</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variable Indices: [&#39;11&#39;, &#39;12&#39;, &#39;13&#39;, &#39;14&#39;, &#39;21&#39;, &#39;22&#39;, &#39;23&#39;, &#39;24&#39;]
+Decision Variable/Allocation Matrix: 
+[[X_11 X_12 X_13 X_14]
+ [X_21 X_22 X_23 X_24]]
+X_11 + 3.0*X_12 + 0.5*X_13 + 4.0*X_14 + 2.5*X_21 + 5.0*X_22 + 1.5*X_23 + 2.5*X_24
+Supply-Demand-Problem:
+MINIMIZE
+1.0*X_11 + 3.0*X_12 + 0.5*X_13 + 4.0*X_14 + 2.5*X_21 + 5.0*X_22 + 1.5*X_23 + 2.5*X_24 + 0.0
+VARIABLES
+0 &lt;= X_11 Integer
+0 &lt;= X_12 Integer
+0 &lt;= X_13 Integer
+0 &lt;= X_14 Integer
+0 &lt;= X_21 Integer
+0 &lt;= X_22 Integer
+0 &lt;= X_23 Integer
+0 &lt;= X_24 Integer
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Supply Constraints</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_warehouses</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lpSum</span><span class="p">(</span><span class="n">allocation</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_customers</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">warehouse_supply</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">model</span> <span class="o">+=</span> <span class="n">lpSum</span><span class="p">(</span><span class="n">allocation</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_customers</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="n">warehouse_supply</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">,</span> <span class="s2">&quot;Supply Constraints &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_11 + X_12 + X_13 + X_14 &lt;= 60000
+X_21 + X_22 + X_23 + X_24 &lt;= 80000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Demand Constraints</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_customers</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lpSum</span><span class="p">(</span><span class="n">allocation</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_warehouses</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="n">cust_demands</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">model</span> <span class="o">+=</span> <span class="n">lpSum</span><span class="p">(</span><span class="n">allocation</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_warehouses</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="n">cust_demands</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">,</span> <span class="s2">&quot;Demand Constraints &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X_11 + X_21 &gt;= 35000
+X_12 + X_22 &gt;= 22000
+X_13 + X_23 &gt;= 18000
+X_14 + X_24 &gt;= 30000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">writeMPS</span><span class="p">(</span><span class="s2">&quot;Supply_demand_prob.lp&quot;</span><span class="p">)</span> <span class="c1"># write problem set-up to a text file</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[X_11, X_12, X_13, X_14, X_21, X_22, X_23, X_24]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pulp</span> <span class="kn">import</span> <span class="n">GLPK</span> <span class="c1"># A working solver needs to be loaded explicit on ARM!</span>
+
+<span class="c1">#model.solve()</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="n">GLPK</span><span class="p">(</span><span class="n">msg</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="n">status</span> <span class="o">=</span>  <span class="n">LpStatus</span><span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">status</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total Cost:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">objective</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+
+<span class="c1"># Decision Variables</span>
+
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">variables</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error couldnt find value&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total Cost: 200000.0
+X_11 = 35000
+X_12 = 22000
+X_13 = 3000
+X_14 = 0
+X_21 = 0
+X_22 = 0
+X_23 = 15000
+X_24 = 30000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Warehouse 1 and Warehouse 2 required capacity</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_warehouses</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warehouse &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lpSum</span><span class="p">(</span><span class="n">allocation</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_customers</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warehouse  1
+60000
+Warehouse  2
+45000
+</pre></div>
+</div>
+</div>
+</div>
+<p>This package looks more complicated than the other example, the value is the ability to save a file.  There is at the time of writing some issue with reading in the file, but it will undoubtable be solved in time.  As a practical matter, the analyst should code the entire model in such a way that reconstruction is simple.</p>
+</div>
+<div class="section" id="example-using-r">
+<h2>Example using <code class="docutils literal notranslate"><span class="pre">R</span></code><a class="headerlink" href="#example-using-r" title="Permalink to this headline">¶</a></h2>
+<p>Consider another really simple example:</p>
+<p><span class="math notranslate nohighlight">\(\text{   minimize : }20 x_1 + 60 x_2\)</span><br>
+<span class="math notranslate nohighlight">\(\text{ subject to : }30 x_1 + 20 x_2 &lt;= 2700\)</span><br>
+<span class="math notranslate nohighlight">\(~~~~~~~~~~~~~~~~~~~~~ 5 x_1 + 10 x_2 &lt;=   850\)</span><br>
+<span class="math notranslate nohighlight">\(~~~~~~~~~~~~~~~~~~~~~~~~~~~   x_1 +    x_2 &gt;=    95\)</span><br></p>
+<p>The screen capture below solves the LP above in R.  It uses the library LpSolve.  The syntax is awkward compared to the python scripts, but is otherwise similar.</p>
+<p><img alt="" src="../../_images/LPinR.png" /></p>
+<p><a class="reference external" href="http://54.243.252.9/ce-5366-webroot/3-Readings/ModelingAndSolvingLinearProgramsWithR.pdf">Modeling and Solving Linear Programs with R</a> is a good starting place if you want to use R to do your computations.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>This section introduced practical approaches to solving Linear Programs, and illustrated use of Python packages to do so.</p>
+</div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference external" href="https://realpython.com/linear-programming-python/">Mirko Stojiljković (2020) Hands-On Linear Programming: Optimization With Python. Real Python (Blog Post)</a></p></li>
 <li><p><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html">scipy.optimize.linprog (Documentation)</a></p></li>
 <li><p><a class="reference external" href="https://towardsdatascience.com/linear-programming-using-python-priyansh-22b5ee888fe0">Priyansh Soni (2020) Linear Programming using Python. Towards Data Science (Blog Post)</a></p></li>
+<li><p><a class="reference external" href="https://www2.mathematik.tu-darmstadt.de/~disser/pdfs/DisserSkutella15.pdf">Disser, Y. and Skutella, M. (2014). The Simplex Algorithm is NP-mighty. TU Berlin, Inst. of Mathematics, MA 5-2, Str. des 17. Juni
+136, 10623 Berlin, Germany.</a></p></li>
+<li><p><a class="reference external" href="https://apps.dtic.mil/sti/tr/pdf/AD0274596.pdf">Gross, O (1962). A LINEAR PROGRAM OF PRAGER’S; Notes on Linear Programming and Extensions. MEMORANDUM
+RM-2993-PR (Rand Corporation Memorandum to U.S. Air Force Research Headquarters)</a></p></li>
 </ol>
 </div>
 </div>

@@ -61,11 +61,7 @@
 # 
 # Optimization means finding either a ‘maximum’ or a ‘minimum’ of a function. The optimum value is typically defined over a range of interest.
 # 
-# <figure align="center">
-# <!--<img src="./convexplot.png" width="300" >-->
-# <img src="http://54.243.252.9/ce-5319-webroot/ce5319jb/lessons/lesson10/optima.png" width="300" >
-# <figcaption>Figure X: Optima of some function </figcaption>
-# </figure>
+# ![](optima.png)
 # 
 # A local maximum occurs when its value is higher than other values in the vicinity; A local minimum occurs when its value is lower than other values in the vicinity. The global maximum is the largest value in the range (a,b); The global minimum is the smallest value in the range (a,b).  A Saddle Point Occurs when the value of the function is higher on one side and lower on the other (the slope and curvature are zero at the point)
 # 
@@ -73,11 +69,7 @@
 # 
 # A function is said to be strictly convex when a line connecting any two points of the function lies strictly above the function
 # 
-# <figure align="center">
-# <!--<img src="./convexplot.png" width="300" >-->
-# <img src="http://54.243.252.9/ce-5319-webroot/ce5319jb/lessons/lesson10/convexplot.png" width="300" >
-# <figcaption>Figure X: Convex Function </figcaption>
-# </figure>
+# ![](convexplot.png)
 # 
 # A function is convex if the second derivative is greater than or equal 0
 # 
@@ -92,11 +84,7 @@
 # A function is concave function when a line joining any two points lies below the function
 # The second derivative of a concave
 # 
-# <figure align="center">
-# <!--<img src="./concaveplot.png" width="300" >-->
-# <img src="http://54.243.252.9/ce-5319-webroot/ce5319jb/lessons/lesson10/concaveplot.png" width="300" >
-# <figcaption>Figure X: Concave Function </figcaption>
-# </figure>
+# ![](concaveplot.png)
 # 
 # A function is concave if the second derivative is greater than or equal 0
 # 
