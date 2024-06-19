@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.15)  17 JUN 2024 22:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.3.15)  19 JUN 2024 03:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -318,7 +318,7 @@ File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count273
 \l__pdf_internal_box=\box55
 )
-No file syllabus.ce5366-2024-2.aux.
+(./syllabus.ce5366-2024-2.aux)
 \openout1 = `syllabus.ce5366-2024-2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
@@ -335,6 +335,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -407,13 +408,10 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 25.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-
-Package natbib Warning: Citation `UNESCO2005' on page 1 undefined on input line
- 38.
-
-
-Package natbib Warning: Citation `UNESCO-IHE2014' on page 1 undefined on input 
-line 39.
+Underfull \hbox (badness 2080) in paragraph at lines 39--45
+[]|\OT1/cmr/m/n/12 Principles of In-te-grated Wa-ter Re-sources Man-age-ment (I
+WRM)
+ []
 
 
 Overfull \hbox (54.0pt too wide) in paragraph at lines 25--48
@@ -426,9 +424,6 @@ Make it at least 14.49998pt.
 We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
-
-LaTeX Warning: Reference `LastPage' on page 1 undefined on input line 70.
-
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
@@ -436,92 +431,53 @@ Overfull \hbox (17.86499pt too wide) in paragraph at lines 70--79
 [][] 
  []
 
-
-LaTeX Warning: Reference `LastPage' on page 2 undefined on input line 108.
-
-[2]
-
-LaTeX Warning: Reference `tab:fall2013scheduleA' on page 3 undefined on input l
-ine 123.
-
-
-LaTeX Warning: Reference `LastPage' on page 3 undefined on input line 131.
-
-[3]
-
-LaTeX Warning: Reference `tab:fall2013scheduleA' on page 4 undefined on input l
-ine 141.
-
-
-LaTeX Warning: Reference `LastPage' on page 4 undefined on input line 163.
-
-[4]
-Overfull \hbox (28.31871pt too wide) in paragraph at lines 168--219
-[][]
+[2] [3] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
+[]|\OT1/cmr/m/n/12 WRPM(pp.3-39)
  []
 
 
-LaTeX Warning: Reference `LastPage' on page 5 undefined on input line 221.
+Overfull \hbox (15.91873pt too wide) in paragraph at lines 168--210
+[][]
+ []
 
 [5
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 277--284
+Underfull \hbox (badness 10000) in paragraph at lines 237--244
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 277--284
+Underfull \hbox (badness 10000) in paragraph at lines 237--244
 
  []
-
-
-Package natbib Warning: There were undefined citations.
-
-
-Package lastpage Warning: Rerun to get the references right on input line 300.
 
 
 AED: lastpage setting LastPage
-
-LaTeX Warning: Reference `LastPage' on page 6 undefined on input line 300.
-
 [6
 
-] (./syllabus.ce5366-2024-2.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./syllabus.ce5366-2024-2.aux) ) 
 Here is how much of TeX's memory you used:
- 5816 strings out of 483183
- 78184 string characters out of 5966292
- 344340 words of memory out of 5000000
- 20718 multiletter control sequences out of 15000+600000
- 542897 words of font info for 63 fonts, out of 8000000 for 9000
+ 5798 strings out of 483183
+ 77905 string characters out of 5966292
+ 338474 words of memory out of 5000000
+ 20699 multiletter control sequences out of 15000+600000
+ 542550 words of font info for 62 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
  40i,13n,45p,881b,283s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/sensei/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/tcsl1200.60
-0pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmtt12.pfb>
-Output written on syllabus.ce5366-2024-2.pdf (6 pages, 126564 bytes).
+ </home/sensei/.texlive2019/texmf-var/fonts/p
+k/ljfour/jknappen/ec/tcsl1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on syllabus.ce5366-2024-2.pdf (6 pages, 110593 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 56 PDF objects out of 1000 (max. 8388607)
+ 39 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
