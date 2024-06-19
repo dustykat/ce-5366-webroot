@@ -16,10 +16,9 @@ chapters:
 
 - file: chapters/optimization/optimization
   sections:
-  - file: chapters/optimization/1topic
-  - file: chapters/optimization/2topic
-  - file: chapters/optimization/3topic
-  
+  - file: chapters/optimization/gridsearch
+#  - file: chapters/optimization/2topic
+  - file: chapters/optimization/unconstrained
 
 - file: chapters/decisionSupportbyLP/linearprograms
 

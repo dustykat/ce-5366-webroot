@@ -53,7 +53,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Scheduling Example" href="1topic.html" />
+    <link rel="next" title="Grid-Search Examples" href="gridsearch.html" />
     <link rel="prev" title="Modeling for Decision Support" href="../simulation/simulation.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -146,18 +146,13 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="1topic.html">
-     Scheduling Example
+    <a class="reference internal" href="gridsearch.html">
+     Grid-Search Examples
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="2topic.html">
-     Grid Search Methods
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="3topic.html">
-     Steepest Descent
+    <a class="reference internal" href="unconstrained.html">
+     Python Unconstrained Minimization Methods
     </a>
    </li>
   </ul>
@@ -353,6 +348,38 @@
      Local Optimal Values
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#techniques-to-escape-local-optima-in-search-of-a-global-optimum">
+     Techniques to Escape Local Optima (in search of a global optimum)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#methods-to-search-for-solutions">
+   Methods to Search for Solutions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grid-search-method">
+     Grid-Search Method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unconstrained-minimization">
+     Unconstrained Minimization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unconstrained-minimization-with-penalty-functions">
+     Unconstrained Minimization with Penalty Functions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constrained-minimization">
+     Constrained Minimization
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -441,9 +468,274 @@ The second derivative of a concave</p>
 </div>
 <div class="section" id="global-optimum-values">
 <h3>Global Optimum Values<a class="headerlink" href="#global-optimum-values" title="Permalink to this headline">¶</a></h3>
+<p>A solution is a global optimum if it is better than or equal to all other feasible solutions across the entire search space.</p>
+<p>Special Characteristics:</p>
+<ul class="simple">
+<li><p>Scope: Covers the entire search space.</p></li>
+<li><p>Performance: Provides the best possible solution across all feasible solutions.</p></li>
+<li><p>Detection: Difficult to guarantee as it requires a comprehensive exploration of the search space.</p></li>
+<li><p>Dependence on Starting Point: Less dependent on initial conditions if the algorithm is designed to avoid or escape local optima.</p></li>
+<li><p>Algorithmic Example: Simulated Annealing and Genetic Algorithms use mechanisms to escape local optima and seek global optima.</p></li>
+</ul>
 </div>
 <div class="section" id="local-optimal-values">
 <h3>Local Optimal Values<a class="headerlink" href="#local-optimal-values" title="Permalink to this headline">¶</a></h3>
+<p>Local Optimum: A solution is a local optimum if it is better than or equal to all other feasible solutions in its immediate vicinity (i.e., within a neighborhood defined by a certain distance or perturbation).</p>
+<p>Special Characteristics:</p>
+<ul class="simple">
+<li><p>Scope: Limited to a neighborhood around the solution.</p></li>
+<li><p>Performance: Provides the best solution within a restricted area of the search space but not necessarily the best overall.</p></li>
+<li><p>Detection: Easier to detect as it requires evaluating neighboring solutions.</p></li>
+<li><p>Dependence on Starting Point: Strongly dependent on the initial conditions and the path taken by the algorithm.</p></li>
+<li><p>Algorithmic Example: Gradient Descent can easily get stuck in a local optimum due to its reliance on local gradient information.</p></li>
+</ul>
+</div>
+<div class="section" id="techniques-to-escape-local-optima-in-search-of-a-global-optimum">
+<h3>Techniques to Escape Local Optima (in search of a global optimum)<a class="headerlink" href="#techniques-to-escape-local-optima-in-search-of-a-global-optimum" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Random Restart: Run the algorithm multiple times with different initial conditions to increase the chances of finding the global optimum.</p></li>
+<li><p>Simulated Annealing: Uses a probabilistic technique to escape local optima by allowing uphill moves (worse solutions) with a probability that decreases over time.</p></li>
+<li><p>Genetic Algorithms: Employs crossover and mutation to explore various parts of the search space and avoid being trapped in local optima.</p></li>
+<li><p>Tabu Search: Utilizes memory structures to keep track of recent moves and prevent the algorithm from revisiting the same local optima.</p></li>
+<li><p>Multi-start Methods: Similar to random restart but can include strategies to diversify the search space exploration.</p></li>
+</ul>
+<p>Practical Implications:</p>
+<ul class="simple">
+<li><p>Efficiency vs. Accuracy: Local optimization algorithms are often more computationally efficient but may not find the best overall solution. In contrast, global optimization algorithms are more computationally intensive but aim to find the best possible solution.</p></li>
+<li><p>Application Suitability: Local optima are acceptable in applications where a “good enough” solution is sufficient and computational resources are limited. For critical applications requiring the best possible solution, finding the global optimum is essential, even at the expense of increased computational effort.</p></li>
+</ul>
+<p>Examples in Real-World Problems:</p>
+<ul class="simple">
+<li><p>Machine Learning: Training neural networks often involves optimization algorithms like Stochastic Gradient Descent, which may converge to local optima. Techniques such as learning rate schedules and batch normalization help in approximating global optima.</p></li>
+<li><p>Operations Research: In logistics and scheduling, local optimization methods might provide quick and feasible solutions, whereas global optimization is necessary for strategic planning to minimize costs or maximize efficiency over the long term.</p></li>
+</ul>
+<p>Summary</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>Local Optimum</p></th>
+<th class="head"><p>Global Optimum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Definition</p></td>
+<td><p>Best solution within a local neighborhood</p></td>
+<td><p>Best solution in the entire search space</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scope</p></td>
+<td><p>Limited, local area</p></td>
+<td><p>Comprehensive, entire search space</p></td>
+</tr>
+<tr class="row-even"><td><p>Performance</p></td>
+<td><p>Good locally, not guaranteed globally</p></td>
+<td><p>Best overall</p></td>
+</tr>
+<tr class="row-odd"><td><p>Detection Difficulty</p></td>
+<td><p>Easier to detect</p></td>
+<td><p>Harder to detect</p></td>
+</tr>
+<tr class="row-even"><td><p>Dependence on Start</p></td>
+<td><p>High</p></td>
+<td><p>Lower with appropriate algorithms</p></td>
+</tr>
+<tr class="row-odd"><td><p>Example Algorithms</p></td>
+<td><p>Gradient Descent</p></td>
+<td><p>Simulated Annealing, Genetic Algorithms</p></td>
+</tr>
+<tr class="row-even"><td><p>Avoiding Traps</p></td>
+<td><p>Rarely escape local optima</p></td>
+<td><p>Use mechanisms to escape local optima</p></td>
+</tr>
+<tr class="row-odd"><td><p>Efficiency</p></td>
+<td><p>More efficient</p></td>
+<td><p>Less efficient, more comprehensive</p></td>
+</tr>
+<tr class="row-even"><td><p>Application</p></td>
+<td><p>Suitable for “good enough” solutions</p></td>
+<td><p>Necessary for optimal solutions in critical tasks</p></td>
+</tr>
+</tbody>
+</table>
+<p>Distinguishing between local and global optima helps in choosing and designing optimization algorithms appropriate for the problem at hand, balancing between computational efficiency and solution quality.</p>
+</div>
+</div>
+<div class="section" id="methods-to-search-for-solutions">
+<h2>Methods to Search for Solutions<a class="headerlink" href="#methods-to-search-for-solutions" title="Permalink to this headline">¶</a></h2>
+<p>Various algorithms exist to help find optima.  Here we breifly explore a few more accessible (from a pedagogical sense)</p>
+<div class="section" id="grid-search-method">
+<h3>Grid-Search Method<a class="headerlink" href="#grid-search-method" title="Permalink to this headline">¶</a></h3>
+<p>Grid-search is a straightforward and systematic technique for hyperparameter optimization, commonly used in machine learning and other optimization tasks.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Grid-Search is also called:</p>
+<ul class="simple">
+<li><p>Exhaustive Search: This term emphasizes the comprehensive evaluation of all possible parameter combinations within the defined grid.</p></li>
+<li><p>Parameter Sweep: Indicates the process of sweeping through a range of parameter values systematically.</p></li>
+<li><p>Hyperparameter Grid Search: Specifically highlights the application of grid search in the context of hyperparameter tuning for machine learning models.</p></li>
+<li><p>Full Factorial Search: Derived from the experimental design terminology, where all combinations of factors (parameters) are evaluated.</p></li>
+<li><p>Grid-based Hyperparameter Tuning: Combines the method (grid-based) and the application (hyperparameter tuning).</p></li>
+</ul>
+<p>These other names sound extra cool, but the underlying approach is the same.</p>
+</div>
+<p>Grid-Search involves:</p>
+<ul class="simple">
+<li><p>Parameter Space Definition: Define a discrete set of values for each hyperparameter that needs to be optimized. This forms a multi-dimensional grid of possible parameter combinations.</p></li>
+<li><p>Exhaustive Search: Evaluate the objective function (e.g., model performance metric) for every possible combination of hyperparameter values on the grid.</p></li>
+<li><p>Selection: Identify the combination of hyperparameters that yields the best performance according to the chosen metric.</p></li>
+</ul>
+<p>Steps in Grid-Search</p>
+<ul class="simple">
+<li><p>Setup: Choose the hyperparameters to tune and specify a range of possible values for each.</p></li>
+<li><p>Combination Generation: Generate all possible combinations of hyperparameters based on the defined ranges.</p></li>
+<li><p>Evaluation: For each combination, train and evaluate the model (or evaluate the objective function).</p></li>
+<li><p>Optimal Parameters: Select the combination that achieves the best performance.</p></li>
+</ul>
+<p>Characteristics</p>
+<ul class="simple">
+<li><p>Exhaustiveness: Tests all possible combinations within the specified ranges, ensuring that the best combination within the grid is found.</p></li>
+<li><p>Simplicity: Conceptually simple and easy to implement.</p></li>
+<li><p>Parallelization: Evaluations are independent, making it straightforward to parallelize.</p></li>
+</ul>
+<p>Advantages</p>
+<ul class="simple">
+<li><p>Comprehensive: Ensures that all specified combinations are evaluated.</p></li>
+<li><p>Implementation: Easy to implement and understand.</p></li>
+<li><p>Baseline: Serves as a baseline for comparing more advanced optimization methods.</p></li>
+</ul>
+<p>Disadvantages</p>
+<ul class="simple">
+<li><p><strong>Computationally Intensive: Can be very time-consuming and computationally expensive, especially with large parameter spaces and many combinations.</strong></p></li>
+<li><p>Granularity: Limited by the granularity of the parameter grid; finer grids increase computational cost.</p></li>
+<li><p>Inefficiency: May test many combinations that are suboptimal, wasting resources.</p></li>
+</ul>
+<p>Example Use Case</p>
+<p>In machine learning, grid-search is often used to optimize hyperparameters of algorithms like support vector machines (SVMs), random forests, and neural networks. For example, tuning the C and gamma parameters of an SVM would involve specifying a range of values for each and using grid-search to find the combination that results in the highest cross-validated accuracy.
+Summary</p>
+<p>Grid-search is a brute-force approach to hyperparameter optimization that is thorough but computationally expensive. It is best suited for problems with a small number of hyperparameters and relatively small parameter ranges. For larger, more complex problems, more efficient optimization techniques such as randomized search or Bayesian optimization might be more appropriate.</p>
+</div>
+<div class="section" id="unconstrained-minimization">
+<h3>Unconstrained Minimization<a class="headerlink" href="#unconstrained-minimization" title="Permalink to this headline">¶</a></h3>
+<p>Unconstrained minimization refers to the process of finding the minimum value of a function <span class="math notranslate nohighlight">\(f(x)\)</span> without any restrictions or constraints on the variables <span class="math notranslate nohighlight">\(x\)</span>. This is a fundamental problem in optimization where the goal is to find the point at which the function attains its lowest value within the entire domain.</p>
+<p>Characteristics</p>
+<ul class="simple">
+<li><p>Objective Function: The function f(x)f(x) that needs to be minimized. It can be any real-valued function, typically assumed to be differentiable.</p></li>
+<li><p>Variables: The set of variables x∈Rnx∈Rn over which the function is minimized.</p></li>
+<li><p>No Constraints: Unlike constrained optimization, there are no bounds, equality, or inequality constraints placed on the variables.</p></li>
+</ul>
+<p>Techniques for Unconstrained Minimization</p>
+<p>Several numerical methods can be used to perform unconstrained minimization, including:</p>
+<ul class="simple">
+<li><p>Gradient Descent: Iteratively moves towards the minimum by taking steps proportional to the negative of the gradient of the function.</p></li>
+<li><p>Newton’s Method: Uses second-order derivative information (the Hessian) to find the minimum more rapidly, assuming the function is twice differentiable.</p></li>
+<li><p>Quasi-Newton Methods: Approximates the Hessian matrix to balance the efficiency of Newton’s method with lower computational cost. The Broyden-Fletcher-Goldfarb-Shanno (BFGS) algorithm is a popular choice.</p></li>
+<li><p>Conjugate Gradient Method: Suitable for large-scale problems, it combines gradient information with previous search directions to accelerate convergence.</p></li>
+<li><p>Trust-Region Methods: Iteratively optimizes a simpler model (usually quadratic) within a region around the current point, adjusting the region size based on the model’s performance.</p></li>
+</ul>
+<p>Steps in Unconstrained Minimization</p>
+<ul class="simple">
+<li><p>Initialization: Choose an initial guess x0x0​ for the variables.</p></li>
+<li><p>Iterative Process: Apply an optimization algorithm to iteratively update the variables to move towards the minimum of the function.</p></li>
+<li><p>Convergence Check: Evaluate convergence criteria (e.g., changes in function value or variable values fall below a threshold) to determine when to stop the iteration.</p></li>
+<li><p>Solution: The final point x∗x∗ is considered the approximate location of the minimum.</p></li>
+</ul>
+<p>Applications</p>
+<p>Unconstrained minimization is widely used in various fields such as:</p>
+<ul class="simple">
+<li><p>Machine Learning: Training models by minimizing loss functions.</p></li>
+<li><p>Economics: Optimizing utility or cost functions.</p></li>
+<li><p>Engineering: Design optimization without restrictions on design parameters.</p></li>
+<li><p>Physics: Finding states of minimum energy.</p></li>
+</ul>
+<p>Summary</p>
+<p>Unconstrained minimization seeks the lowest value of a function without any restrictions on the variable values. It relies on various iterative numerical methods to find the solution efficiently. This type of optimization is fundamental and serves as a building block for more complex constrained optimization problems.</p>
+</div>
+<div class="section" id="unconstrained-minimization-with-penalty-functions">
+<h3>Unconstrained Minimization with Penalty Functions<a class="headerlink" href="#unconstrained-minimization-with-penalty-functions" title="Permalink to this headline">¶</a></h3>
+<p>In many real-world optimization problems, constraints are inevitable. However, sometimes it is beneficial to transform a constrained optimization problem into an unconstrained one to leverage more efficient unconstrained optimization algorithms. This transformation can be achieved using penalty functions.</p>
+<p>Penalty Functions</p>
+<p>A penalty function is an additional term added to the objective function to penalize violations of constraints. The idea is to convert the constrained optimization problem into an unconstrained problem by adding a penalty function that imposes a cost for violating the constraints.</p>
+<p>Types of Penalty Functions</p>
+<ul class="simple">
+<li><p>Quadratic Penalty Function: This function imposes a quadratic penalty on constraint violations. This type of penalty is useful for smooth functions but can lead to ill-conditioning for large penalties.</p></li>
+<li><p>Linear Penalty Function: Imposes a linear cost for constraint violations. This function is simpler but might not be as effective for equality constraints.</p></li>
+<li><p>Barrier Function: This type imposes an infinite penalty for infeasible solutions, effectively “barriering” the constraints. Barrier functions are useful in interior-point methods but require careful handling near the boundary of the feasible region.</p></li>
+</ul>
+<p>Penalty Parameter</p>
+<p>Penalty functions often include a parameter that controls the severity of the penalty.
+The value of penalty parameter (usually a multiplier) is crucial.</p>
+<ul class="simple">
+<li><p>Large: Strongly penalizes constraint violations, pushing the solution towards feasibility but can cause numerical instability.</p></li>
+<li><p>Small: Lessens the penalty impact, allowing the optimizer to explore more freely but might not enforce constraints effectively.</p></li>
+</ul>
+<p>Steps Using Penalty Functions</p>
+<ul class="simple">
+<li><p>Define the Penalty Function: Choose an appropriate penalty function based on the problem’s constraints.</p></li>
+<li><p>Combine with Objective: Formulate the new objective function f(x)+P(x)f(x)+P(x).</p></li>
+<li><p>Iterate: Use an unconstrained optimization algorithm to minimize the combined objective function.</p></li>
+<li><p>Adjust Penalty Parameter: If necessary, iteratively adjust μμ to balance between minimizing the original objective and enforcing constraints.</p></li>
+</ul>
+<p>Advantages and Disadvantages</p>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Simplifies the problem by transforming it into an unconstrained form.</p></li>
+<li><p>Allows leveraging efficient unconstrained optimization algorithms.</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>The choice of penalty function and weighting parameter are problem-specific and require tuning.</p></li>
+<li><p>Can introduce numerical instability or ill-conditioning.</p></li>
+<li><p>May require many iterations or adjustments to achieve a feasible solution.</p></li>
+</ul>
+<p>Penalty functions are a powerful technique to <strong>approximate</strong> and enforce constraints by transforming a constrained optimization problem into an unconstrained one. This approach allows the use of efficient unconstrained optimization algorithms but requires careful tuning of the penalty function and parameters to balance feasibility and optimality.</p>
+</div>
+<div class="section" id="constrained-minimization">
+<h3>Constrained Minimization<a class="headerlink" href="#constrained-minimization" title="Permalink to this headline">¶</a></h3>
+<p>Constrained minimization refers to the process of finding the minimum value of a function f(x)f(x) subject to certain restrictions or constraints on the variables xx. These constraints can take the form of equality constraints, inequality constraints, or both.
+Problem Formulation</p>
+<p>A constrained minimization problem is typically formulated as follows:</p>
+<p><span class="math notranslate nohighlight">\(\text{min⁡}~~~~~~~  f(x)\)</span><br>
+<span class="math notranslate nohighlight">\(\text{subject to}  g_i(x)&lt;=0,  i=1,\dots,m \)</span><br>
+<span class="math notranslate nohighlight">\(~~~~~~~~~~~~~~~~~~~h_j(x)=0,  j=1,\dots,p  \)</span><br></p>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x)\)</span> is the objective function to be minimized.</p></li>
+<li><p><span class="math notranslate nohighlight">\(g_i(x)\)</span> represents the inequality constraints.</p></li>
+<li><p><span class="math notranslate nohighlight">\(h_j(x)\)</span> represents the equality constraints.</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span> is the vector of variables to be optimized.</p></li>
+</ul>
+<p>Types of Constraints</p>
+<ul class="simple">
+<li><p>Inequality Constraints: These constraints restrict the solution to a feasible region where the constraint functions <span class="math notranslate nohighlight">\(g_i(x)\)</span> are less than or equal to zero.</p></li>
+<li><p>Equality Constraints: These constraints restrict the solution to a feasible region where the constraint functions <span class="math notranslate nohighlight">\(h_j(x)\)</span> are exactly equal to zero.</p></li>
+</ul>
+<p>Techniques for Constrained Minimization</p>
+<p>Several numerical methods can be used to perform constrained minimization, including:</p>
+<ul class="simple">
+<li><p>Lagrange Multipliers: A mathematical technique that introduces additional variables (Lagrange multipliers) to transform a constrained problem into an unconstrained one.</p></li>
+<li><p>Karush-Kuhn-Tucker (KKT) Conditions: Generalizes the method of Lagrange multipliers for both inequality and equality constraints. These conditions provide necessary conditions for a solution to be optimal.</p></li>
+<li><p>Interior-Point Methods: Approaches that iteratively improve the solution by exploring the interior of the feasible region, often using barrier functions to handle constraints.</p></li>
+<li><p>Sequential Quadratic Programming (SQP): An iterative method that solves a series of quadratic programming subproblems, each approximating the original problem more closely.</p></li>
+<li><p>Penalty and Barrier Methods: Transform the constrained problem into an unconstrained one by adding penalty or barrier terms to the objective function, penalizing constraint violations.</p></li>
+</ul>
+<p>Steps in Constrained Minimization</p>
+<ul class="simple">
+<li><p>Define the Problem: Specify the objective function <span class="math notranslate nohighlight">\(f(x)\)</span> and the constraints<span class="math notranslate nohighlight">\(g_i(x)\)</span> and <span class="math notranslate nohighlight">\(hj(x)\)</span>.</p></li>
+<li><p>Choose an Algorithm: Select an appropriate constrained minimization algorithm based on the problem’s characteristics.</p></li>
+<li><p>Initialization: Choose an initial guess for the variables xx and any necessary parameters (e.g., penalty coefficients).</p></li>
+<li><p>Iterative Optimization: Apply the chosen algorithm to iteratively update the variables, seeking to minimize the objective function while satisfying the constraints.</p></li>
+<li><p>Convergence Check: Evaluate convergence criteria, such as changes in the objective function value or satisfaction of the constraints, to determine when to stop the iteration.</p></li>
+<li><p>Solution: The final point <span class="math notranslate nohighlight">\(x^*\)</span> is considered the optimal solution that minimizes the objective function while satisfying all constraints.</p></li>
+</ul>
+<p>Applications</p>
+<p>Constrained minimization is widely used in various fields such as:</p>
+<ul class="simple">
+<li><p>Engineering: Design optimization subject to physical or performance constraints.</p></li>
+<li><p>Economics: Optimizing resource allocation with budgetary constraints.</p></li>
+<li><p>Finance: Portfolio optimization with risk and return constraints.</p></li>
+<li><p>Operations Research: Scheduling and logistics problems with resource and time constraints.</p></li>
+</ul>
+<p>Summary</p>
+<p>Constrained minimization involves finding the minimum of a function subject to restrictions on the variables. It requires specialized numerical methods to handle the constraints effectively. The choice of method depends on the problem’s specific constraints and structure. This type of optimization is essential for many practical applications where solutions must adhere to certain conditions.</p>
 </div>
 </div>
 <div class="toctree-wrapper compound">
@@ -489,10 +781,10 @@ The second derivative of a concave</p>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="1topic.html" title="next page">
+        <a class="right-next" href="gridsearch.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Scheduling Example</p>
+                <p class="prevnext-title">Grid-Search Examples</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

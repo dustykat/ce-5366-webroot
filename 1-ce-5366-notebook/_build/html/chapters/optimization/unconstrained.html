@@ -1,0 +1,914 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Unconstrained Minimization Methods &#8212; Water Resources Management</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Linear Programming for Decision Support" href="../decisionSupportbyLP/linearprograms.html" />
+    <link rel="prev" title="Grid-Search Examples" href="gridsearch.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/WRMlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Water Resources Management</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome to CE-5366 Water Resources Manglement
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../introduction/introduction.html">
+   Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../introduction/resourcesallocation.html">
+     Resource Allocation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../economics/economics.html">
+   Financial Planning and Management
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../economics/policyoverride.html">
+     Policy Overrides
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../simulation/simulation.html">
+   Modeling for Decision Support
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="optimization.html">
+   Optimization Modeling for Decision Support
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="gridsearch.html">
+     Grid-Search Examples
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Python Unconstrained Minimization Methods
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../decisionSupportbyLP/linearprograms.html">
+   Linear Programming for Decision Support
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../gwexample/gwexample.html">
+   Groundwater Water Allocation by Simulation-Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../decisionSupportbyNLP/nonlinearprograms.html">
+   Non-Linear Programming for Decision Support
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../watersupplyallocation/watersupplyallocation.html">
+   Water Supply Allocation under Uncertainty
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../waterqualityallocation/waterqualityallocation.html">
+   Water Quality Allocation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../waterqualityallocation/reactortank.html">
+     Example: Reactor-Tank System
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../qual2e/waterqualitymodels.html">
+     Water Quality Simulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../qual2e/qual2e.html">
+     QUAL2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/optimization/unconstrained.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/optimization/unconstrained.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chapters/optimization/unconstrained.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#packages">
+   Packages
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nelder-mead-method">
+     Nelder-Mead Method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#powell-s-direction-set-method">
+     Powell’s Direction Set Method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bounded-unconstrained-least-squares">
+     Bounded Unconstrained Least Squares
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <!--![downhill-004.png](attachment:e5cc2360-f341-41d2-b854-dce2031abdde.png)# Gradient Descent Methods-->
+<div class="tex2jax_ignore mathjax_ignore section" id="python-unconstrained-minimization-methods">
+<h1>Python Unconstrained Minimization Methods<a class="headerlink" href="#python-unconstrained-minimization-methods" title="Permalink to this headline">¶</a></h1>
+<p>Unconstrained minimization finds the minimum value of a function <span class="math notranslate nohighlight">\(f(x)\)</span> without any restrictions or constraints on the variables <span class="math notranslate nohighlight">\(x\)</span>. This is a fundamental problem in optimization where the goal is to find the point at which the function attains its lowest value within the entire domain.</p>
+<p>Some background is found in <a class="reference external" href="http://54.243.252.9/ce-5333-systems-webroot/3-Readings/OptimizeOssenbruggen/OptimizeOssenbruggen.pdf">Ossenbruggen (1985-ish)</a></p>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<p>An example problem is to minimize</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \sum_{i = 1}^{N-1} \:100(x_i - x_{i-1}^{2})\]</div>
+<p>without any constraints. A couple of favorite methods are outlined below.</p>
+<div class="section" id="nelder-mead-method">
+<h3>Nelder-Mead Method<a class="headerlink" href="#nelder-mead-method" title="Permalink to this headline">¶</a></h3>
+<p>Also called Downhill Simplex, but not the same as the Simplex Method for Linear Programs!</p>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Function calls only</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Needs a starting vector that is non-degenerate</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+
+<span class="k">def</span> <span class="nf">rosen</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The Rosenbrock function&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="mf">100.0</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">-</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">])</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">rosen</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nelder-mead&#39;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.000066
+         Iterations: 141
+         Function evaluations: 243
+[0.99910115 0.99820923 0.99646346 0.99297555 0.98600385]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="powell-s-direction-set-method">
+<h3>Powell’s Direction Set Method<a class="headerlink" href="#powell-s-direction-set-method" title="Permalink to this headline">¶</a></h3>
+<p>I like this method a lot.</p>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Function calls only</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Needs a starting vector that is non-degenerate</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Below is the FORTRAN code to implement the method below.  Notice the distinct usability of a python package over the old ways.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+
+<span class="k">def</span> <span class="nf">rosen</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The Rosenbrock function&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="mf">100.0</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">-</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span><span class="o">**</span><span class="mf">2.0</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">])</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">rosen</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;powell&#39;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.000000
+         Iterations: 18
+         Function evaluations: 1084
+[1. 1. 1. 1. 1.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>FORTRAN search engine using Powell’s method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">PROGRAM</span> <span class="n">SEARCH</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">MULTI</span><span class="o">-</span><span class="n">DIMENSIONAL</span> <span class="n">SEARCHING</span> <span class="n">METHOD</span> <span class="n">FOR</span> <span class="n">MINIMIZATION</span> <span class="n">OF</span> <span class="n">A</span> <span class="n">SCALAR</span> <span class="n">FUNCTION</span>
+<span class="n">C</span> <span class="n">OF</span> <span class="n">AN</span> <span class="n">N</span><span class="o">-</span><span class="n">DIMENSIONAL</span> <span class="n">VECTOR</span> <span class="n">ARGUMENT</span><span class="o">.</span>  <span class="n">SEARCH</span> <span class="n">USES</span> <span class="n">POWELL</span><span class="s1">&#39;S SEARCHING METHOD</span>
+<span class="n">C</span> <span class="n">WHICH</span> <span class="n">HAS</span> <span class="n">FINITE</span> <span class="n">CONVERGENCE</span> <span class="n">FOR</span> <span class="n">QUADRATIC</span> <span class="n">FUNCTIONS</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">PROGRAM</span> <span class="n">ASSUMES</span> <span class="n">A</span> <span class="n">FUNCTION</span> <span class="n">NAMED</span> <span class="n">FUNC</span> <span class="n">IS</span> <span class="n">THE</span> <span class="n">FUNCTION</span> <span class="n">TO</span> <span class="n">BE</span> <span class="n">MINIMIZED</span>
+<span class="n">C</span> <span class="n">FUNC</span> <span class="n">IS</span> <span class="n">THE</span> <span class="n">USER</span> <span class="n">DEFINED</span> <span class="n">FUNCTION</span> <span class="n">WHICH</span> <span class="n">MUST</span> <span class="n">BE</span> <span class="n">LINKED</span> <span class="n">WITH</span> <span class="n">THE</span> <span class="n">PROGRAM</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">REF</span><span class="p">:</span>  <span class="n">AVRIEL</span><span class="p">,</span> <span class="n">M</span><span class="o">.</span><span class="p">,</span> <span class="mf">1976.</span>  <span class="n">NONLINEAR</span> <span class="n">PROGRAMMING</span><span class="p">;</span> <span class="n">ANALYSIS</span> <span class="n">AND</span> <span class="n">METHODS</span><span class="p">,</span> 
+<span class="n">C</span>       <span class="n">PRENTICE</span> <span class="n">HALL</span><span class="p">,</span> <span class="n">ENGLEWOOD</span> <span class="n">CLIFFS</span><span class="p">,</span> <span class="n">NEW</span> <span class="n">JERSEY</span><span class="o">.</span>
+<span class="n">C</span>
+<span class="n">C</span>       <span class="n">PRESS</span><span class="p">,</span> <span class="n">W</span><span class="o">.</span><span class="n">H</span><span class="o">.</span><span class="p">,</span> <span class="n">FLANNERY</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="n">P</span><span class="o">.</span><span class="p">,</span> <span class="n">TEUKOLSKY</span><span class="p">,</span> <span class="n">S</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="p">,</span> <span class="n">AND</span> <span class="n">W</span><span class="o">.</span><span class="n">T</span><span class="o">.</span> <span class="n">VETTERLING</span><span class="p">,</span>
+<span class="n">C</span>       <span class="mf">1986.</span>  <span class="n">NUMERICAL</span> <span class="n">RECIPES</span><span class="p">;</span> <span class="n">THE</span> <span class="n">ART</span> <span class="n">OF</span> <span class="n">SCIENTIFIC</span> <span class="n">COMPUTING</span><span class="p">,</span> <span class="n">CAMBRIDGE</span>
+<span class="n">C</span>       <span class="n">UNIVERSITY</span> <span class="n">PRESS</span><span class="p">,</span> <span class="n">NEW</span> <span class="n">YORK</span><span class="o">.</span>
+<span class="n">C</span>
+      <span class="n">IMPLICIT</span> <span class="n">REAL</span><span class="o">*</span><span class="mi">8</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">O</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span>
+      <span class="n">PARAMETER</span><span class="p">(</span><span class="n">NP</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+      <span class="n">DIMENSION</span> <span class="n">P</span><span class="p">(</span><span class="n">NP</span><span class="p">),</span><span class="n">XI</span><span class="p">(</span><span class="n">NP</span><span class="p">,</span><span class="n">NP</span><span class="p">)</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">OPEN</span> <span class="n">INPUT</span> <span class="n">FILE</span> <span class="n">AND</span> <span class="n">READ</span> <span class="n">INITIAL</span> <span class="n">GUESS</span> <span class="n">AND</span> <span class="n">ORTHOGONAL</span> <span class="n">SEARCH</span> <span class="n">DIRECTIONS</span>
+<span class="n">C</span>
+      <span class="n">OPEN</span><span class="p">(</span><span class="n">UNIT</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span><span class="n">STATUS</span><span class="o">=</span><span class="s1">&#39;UNKNOWN&#39;</span><span class="p">,</span><span class="n">ACCESS</span><span class="o">=</span><span class="s1">&#39;SEQUENTIAL&#39;</span><span class="p">,</span>
+     <span class="mi">1</span>     <span class="n">FILE</span><span class="o">=</span><span class="s1">&#39;POWELL.DAT&#39;</span><span class="p">)</span>
+      <span class="n">REWIND</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+      <span class="n">READ</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="n">N</span><span class="p">,</span><span class="n">FTOL</span>
+      <span class="n">READ</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="o">*</span><span class="p">)(</span><span class="n">P</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+      <span class="n">DO</span> <span class="mi">101</span> <span class="n">IROW</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+         <span class="n">READ</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="o">*</span><span class="p">)(</span><span class="n">XI</span><span class="p">(</span><span class="n">IROW</span><span class="p">,</span><span class="n">ICOL</span><span class="p">),</span><span class="n">ICOL</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+ <span class="mi">101</span>  <span class="n">CONTINUE</span>
+      <span class="n">CLOSE</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">ECHO</span> <span class="n">INPUT</span>
+<span class="n">C</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;POWELL SEARCH METHOD FOR MINIMIZATION OF F(X)&#39;</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;INITIAL STARTING VECTOR&#39;</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="mi">1990</span><span class="p">)(</span><span class="n">P</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;INITIAL ORTHOGONAL SEARCH DIRECTION SET&#39;</span>
+      <span class="n">DO</span> <span class="mi">102</span> <span class="n">IROW</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+         <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="mi">1990</span><span class="p">)(</span><span class="n">XI</span><span class="p">(</span><span class="n">IROW</span><span class="p">,</span><span class="n">ICOL</span><span class="p">),</span><span class="n">ICOL</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+ <span class="mi">102</span>  <span class="n">CONTINUE</span>
+      <span class="n">FRET</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;INITIAL FUNCTION VALUE =&#39;</span><span class="p">,</span><span class="n">FRET</span>
+<span class="n">C</span>
+ <span class="mi">1990</span> <span class="n">FORMAT</span><span class="p">(</span><span class="mi">1</span><span class="n">X</span><span class="p">,</span><span class="mi">10</span><span class="p">(</span><span class="n">G12</span><span class="o">.</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="n">X</span><span class="p">))</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">BEGIN</span> <span class="n">SEARCH</span>
+<span class="n">C</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;BEGINNING SEARCH -- COMMAND ESCAPE TO ABORT&#39;</span>
+      <span class="n">CALL</span> <span class="n">POWELL</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">XI</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">NP</span><span class="p">,</span><span class="n">FTOL</span><span class="p">,</span><span class="n">ITER</span><span class="p">,</span><span class="n">FRET</span><span class="p">)</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;NORMAL EXIT FROM POWELL SEARCH METHOD&#39;</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;ITERATIONS REQUIRED =&#39;</span><span class="p">,</span><span class="n">ITER</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;FUNCTION TOLERANCE  =&#39;</span><span class="p">,</span><span class="n">FTOL</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;POLICY VECTOR UPON EXIT&#39;</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="mi">1990</span><span class="p">)(</span><span class="n">P</span><span class="p">(</span><span class="n">I</span><span class="p">),</span><span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;FUNCTION VALUE UPON EXIT =&#39;</span><span class="p">,</span><span class="n">FRET</span>
+<span class="n">C</span>
+      <span class="n">STOP</span>
+      <span class="n">END</span>
+<span class="n">C</span>
+      <span class="n">SUBROUTINE</span> <span class="n">POWELL</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">XI</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">NP</span><span class="p">,</span><span class="n">FTOL</span><span class="p">,</span><span class="n">ITER</span><span class="p">,</span><span class="n">FRET</span><span class="p">)</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">POWELL</span><span class="o">.</span><span class="n">F</span> <span class="n">FROM</span> <span class="n">NUMERICAL</span> <span class="n">RECIPES</span><span class="o">.</span>  <span class="n">MODIFIED</span> <span class="n">FOR</span> <span class="n">DOUBLE</span> <span class="n">PRECISION</span> <span class="n">ON</span> 
+<span class="n">C</span> <span class="n">MACINTOSH</span> <span class="n">COMPUTERS</span> <span class="n">BY</span> <span class="n">THEODORE</span> <span class="n">G</span><span class="o">.</span> <span class="n">CLEVELAND</span> <span class="n">MARCH</span><span class="o">-</span><span class="mi">1992</span>
+<span class="n">C</span>
+      <span class="n">IMPLICIT</span> <span class="n">REAL</span><span class="o">*</span><span class="mi">8</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">O</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span>
+      <span class="n">PARAMETER</span> <span class="p">(</span><span class="n">NMAX</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">ITMAX</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+      <span class="n">DIMENSION</span> <span class="n">P</span><span class="p">(</span><span class="n">NP</span><span class="p">),</span><span class="n">XI</span><span class="p">(</span><span class="n">NP</span><span class="p">,</span><span class="n">NP</span><span class="p">),</span><span class="n">PT</span><span class="p">(</span><span class="n">NMAX</span><span class="p">),</span><span class="n">PTT</span><span class="p">(</span><span class="n">NMAX</span><span class="p">),</span><span class="n">XIT</span><span class="p">(</span><span class="n">NMAX</span><span class="p">)</span>
+      <span class="n">FRET</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+      <span class="n">DO</span> <span class="mi">11</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+        <span class="n">PT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="n">P</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+ <span class="mi">11</span>   <span class="n">CONTINUE</span>
+      <span class="n">ITER</span><span class="o">=</span><span class="mi">0</span>
+ <span class="mi">1</span>    <span class="n">ITER</span><span class="o">=</span><span class="n">ITER</span><span class="o">+</span><span class="mi">1</span>
+      <span class="n">FP</span><span class="o">=</span><span class="n">FRET</span>
+      <span class="n">IBIG</span><span class="o">=</span><span class="mi">0</span>
+      <span class="n">DEL</span><span class="o">=</span><span class="mf">0.</span>
+      <span class="n">DO</span> <span class="mi">13</span> <span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+        <span class="n">DO</span> <span class="mi">12</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+          <span class="n">XIT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="n">XI</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+ <span class="mi">12</span>     <span class="n">CONTINUE</span>
+        <span class="n">CALL</span> <span class="n">LINMIN</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">XIT</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">FRET</span><span class="p">)</span>
+        <span class="n">IF</span><span class="p">(</span><span class="n">ABS</span><span class="p">(</span><span class="n">FP</span><span class="o">-</span><span class="n">FRET</span><span class="p">)</span><span class="o">.</span><span class="n">GT</span><span class="o">.</span><span class="n">DEL</span><span class="p">)</span><span class="n">THEN</span>
+          <span class="n">DEL</span><span class="o">=</span><span class="n">ABS</span><span class="p">(</span><span class="n">FP</span><span class="o">-</span><span class="n">FRET</span><span class="p">)</span>
+          <span class="n">IBIG</span><span class="o">=</span><span class="n">I</span>
+        <span class="n">ENDIF</span>
+ <span class="mi">13</span>   <span class="n">CONTINUE</span>
+      <span class="n">IF</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">ABS</span><span class="p">(</span><span class="n">FP</span><span class="o">-</span><span class="n">FRET</span><span class="p">)</span><span class="o">.</span><span class="n">LE</span><span class="o">.</span><span class="n">FTOL</span><span class="o">*</span><span class="p">(</span><span class="n">ABS</span><span class="p">(</span><span class="n">FP</span><span class="p">)</span><span class="o">+</span><span class="n">ABS</span><span class="p">(</span><span class="n">FRET</span><span class="p">)))</span><span class="n">RETURN</span>
+<span class="n">C</span>      <span class="n">IF</span><span class="p">(</span><span class="n">ITER</span><span class="o">.</span><span class="n">EQ</span><span class="o">.</span><span class="n">ITMAX</span><span class="p">)</span> <span class="n">PAUSE</span> <span class="s1">&#39;Powell exceeding maximum iterations.&#39;</span>
+      <span class="n">IF</span><span class="p">(</span><span class="n">ITER</span> <span class="o">.</span><span class="n">EQ</span><span class="o">.</span> <span class="n">ITMAX</span><span class="p">)</span> <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;POWELL MAXIMUM ITERATIONS&#39;</span>
+      <span class="n">DO</span> <span class="mi">14</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+        <span class="n">PTT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="mf">2.</span><span class="o">*</span><span class="n">P</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">-</span><span class="n">PT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+        <span class="n">XIT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="n">P</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">-</span><span class="n">PT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+        <span class="n">PT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="n">P</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+ <span class="mi">14</span>   <span class="n">CONTINUE</span>
+      <span class="n">FPTT</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">PTT</span><span class="p">)</span>
+      <span class="n">IF</span><span class="p">(</span><span class="n">FPTT</span><span class="o">.</span><span class="n">GE</span><span class="o">.</span><span class="n">FP</span><span class="p">)</span><span class="n">GO</span> <span class="n">TO</span> <span class="mi">1</span>
+      <span class="n">T</span><span class="o">=</span><span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="n">FP</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">FRET</span><span class="o">+</span><span class="n">FPTT</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FP</span><span class="o">-</span><span class="n">FRET</span><span class="o">-</span><span class="n">DEL</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">DEL</span><span class="o">*</span><span class="p">(</span><span class="n">FP</span><span class="o">-</span><span class="n">FPTT</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+      <span class="n">IF</span><span class="p">(</span><span class="n">T</span><span class="o">.</span><span class="n">GE</span><span class="o">.</span><span class="mf">0.</span><span class="p">)</span><span class="n">GO</span> <span class="n">TO</span> <span class="mi">1</span>
+      <span class="n">CALL</span> <span class="n">LINMIN</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">XIT</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">FRET</span><span class="p">)</span>
+      <span class="n">DO</span> <span class="mi">15</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+        <span class="n">XI</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">IBIG</span><span class="p">)</span><span class="o">=</span><span class="n">XIT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+ <span class="mi">15</span>   <span class="n">CONTINUE</span>
+      <span class="n">GO</span> <span class="n">TO</span> <span class="mi">1</span>
+      <span class="n">END</span>
+<span class="n">C</span>
+      <span class="n">SUBROUTINE</span> <span class="n">LINMIN</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">XI</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">FRET</span><span class="p">)</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">LIMMIN</span><span class="o">.</span><span class="n">F</span> <span class="n">FROM</span> <span class="n">NUMERICAL</span> <span class="n">RECIPES</span><span class="o">.</span>  <span class="n">MODIFIED</span> <span class="n">FOR</span> <span class="n">DOUBLE</span> <span class="n">PRECISION</span> <span class="n">ON</span> 
+<span class="n">C</span> <span class="n">MACINTOSH</span> <span class="n">COMPUTERS</span> <span class="n">BY</span> <span class="n">THEODORE</span> <span class="n">G</span><span class="o">.</span> <span class="n">CLEVELAND</span> <span class="n">MARCH</span><span class="o">-</span><span class="mi">1992</span>
+<span class="n">C</span>
+      <span class="n">IMPLICIT</span> <span class="n">REAL</span><span class="o">*</span><span class="mi">8</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">O</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span>
+      <span class="n">PARAMETER</span> <span class="p">(</span><span class="n">NMAX</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span><span class="n">TOL</span><span class="o">=</span><span class="mf">1.</span><span class="n">D</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+      <span class="n">EXTERNAL</span> <span class="n">F1DIM</span>
+      <span class="n">DIMENSION</span> <span class="n">P</span><span class="p">(</span><span class="n">N</span><span class="p">),</span><span class="n">XI</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+      <span class="n">COMMON</span> <span class="o">/</span><span class="n">F1COM</span><span class="o">/</span> <span class="n">NCOM</span><span class="p">,</span><span class="n">PCOM</span><span class="p">(</span><span class="n">NMAX</span><span class="p">),</span><span class="n">XICOM</span><span class="p">(</span><span class="n">NMAX</span><span class="p">)</span>
+      <span class="n">NCOM</span><span class="o">=</span><span class="n">N</span>
+      <span class="n">DO</span> <span class="mi">11</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+        <span class="n">PCOM</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="n">P</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+        <span class="n">XICOM</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="n">XI</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+ <span class="mi">11</span>   <span class="n">CONTINUE</span>
+      <span class="n">AX</span><span class="o">=</span><span class="mf">0.</span>
+      <span class="n">XX</span><span class="o">=</span><span class="mf">1.</span>
+      <span class="n">BX</span><span class="o">=</span><span class="mf">2.</span>
+      <span class="n">CALL</span> <span class="n">MNBRAK</span><span class="p">(</span><span class="n">AX</span><span class="p">,</span><span class="n">XX</span><span class="p">,</span><span class="n">BX</span><span class="p">,</span><span class="n">FA</span><span class="p">,</span><span class="n">FX</span><span class="p">,</span><span class="n">FB</span><span class="p">,</span><span class="n">F1DIM</span><span class="p">)</span>
+      <span class="n">FRET</span><span class="o">=</span><span class="n">BRENT</span><span class="p">(</span><span class="n">AX</span><span class="p">,</span><span class="n">XX</span><span class="p">,</span><span class="n">BX</span><span class="p">,</span><span class="n">F1DIM</span><span class="p">,</span><span class="n">TOL</span><span class="p">,</span><span class="n">XMIN</span><span class="p">)</span>
+      <span class="n">DO</span> <span class="mi">12</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span>
+        <span class="n">XI</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="n">XMIN</span><span class="o">*</span><span class="n">XI</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="n">P</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">+</span><span class="n">XI</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+ <span class="mi">12</span>   <span class="n">CONTINUE</span>
+      <span class="n">RETURN</span>
+      <span class="n">END</span>
+<span class="n">C</span>
+      <span class="n">FUNCTION</span> <span class="n">F1DIM</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">F1DIM</span><span class="o">.</span><span class="n">F</span> <span class="n">FROM</span> <span class="n">NUMERICAL</span> <span class="n">RECIPES</span><span class="o">.</span>  <span class="n">MODIFIED</span> <span class="n">FOR</span> <span class="n">DOUBLE</span> <span class="n">PRECISION</span> <span class="n">ON</span> 
+<span class="n">C</span> <span class="n">MACINTOSH</span> <span class="n">COMPUTERS</span> <span class="n">BY</span> <span class="n">THEODORE</span> <span class="n">G</span><span class="o">.</span> <span class="n">CLEVELAND</span> <span class="n">MARCH</span><span class="o">-</span><span class="mi">1992</span>
+<span class="n">C</span>
+      <span class="n">IMPLICIT</span> <span class="n">REAL</span><span class="o">*</span><span class="mi">8</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">O</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span>
+      <span class="n">PARAMETER</span> <span class="p">(</span><span class="n">NMAX</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+      <span class="n">COMMON</span> <span class="o">/</span><span class="n">F1COM</span><span class="o">/</span> <span class="n">NCOM</span><span class="p">,</span><span class="n">PCOM</span><span class="p">(</span><span class="n">NMAX</span><span class="p">),</span><span class="n">XICOM</span><span class="p">(</span><span class="n">NMAX</span><span class="p">)</span>
+      <span class="n">DIMENSION</span> <span class="n">XT</span><span class="p">(</span><span class="n">NMAX</span><span class="p">)</span>
+      <span class="n">DO</span> <span class="mi">11</span> <span class="n">J</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">NCOM</span>
+        <span class="n">XT</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">=</span><span class="n">PCOM</span><span class="p">(</span><span class="n">J</span><span class="p">)</span><span class="o">+</span><span class="n">X</span><span class="o">*</span><span class="n">XICOM</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+ <span class="mi">11</span>   <span class="n">CONTINUE</span>
+      <span class="n">F1DIM</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">XT</span><span class="p">)</span>
+      <span class="n">RETURN</span>
+      <span class="n">END</span>
+<span class="n">C</span>
+      <span class="n">FUNCTION</span> <span class="n">BRENT</span><span class="p">(</span><span class="n">AX</span><span class="p">,</span><span class="n">BX</span><span class="p">,</span><span class="n">CX</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">TOL</span><span class="p">,</span><span class="n">XMIN</span><span class="p">)</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">BRENT</span><span class="o">.</span><span class="n">F</span> <span class="n">FROM</span> <span class="n">NUMERICAL</span> <span class="n">RECIPES</span><span class="o">.</span>  <span class="n">MODIFIED</span> <span class="n">FOR</span> <span class="n">DOUBLE</span> <span class="n">PRECISION</span> <span class="n">ON</span> 
+<span class="n">C</span> <span class="n">MACINTOSH</span> <span class="n">COMPUTERS</span> <span class="n">BY</span> <span class="n">THEODORE</span> <span class="n">G</span><span class="o">.</span> <span class="n">CLEVELAND</span> <span class="n">MARCH</span><span class="o">-</span><span class="mi">1992</span>
+<span class="n">C</span>
+      <span class="n">IMPLICIT</span> <span class="n">REAL</span><span class="o">*</span><span class="mi">8</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">O</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span>
+      <span class="n">PARAMETER</span> <span class="p">(</span><span class="n">ITMAX</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span><span class="n">CGOLD</span><span class="o">=.</span><span class="mi">3819660</span><span class="p">,</span><span class="n">ZEPS</span><span class="o">=</span><span class="mf">1.0E-10</span><span class="p">)</span>
+      <span class="n">A</span><span class="o">=</span><span class="n">MIN</span><span class="p">(</span><span class="n">AX</span><span class="p">,</span><span class="n">CX</span><span class="p">)</span>
+      <span class="n">B</span><span class="o">=</span><span class="n">MAX</span><span class="p">(</span><span class="n">AX</span><span class="p">,</span><span class="n">CX</span><span class="p">)</span>
+      <span class="n">V</span><span class="o">=</span><span class="n">BX</span>
+      <span class="n">W</span><span class="o">=</span><span class="n">V</span>
+      <span class="n">X</span><span class="o">=</span><span class="n">V</span>
+      <span class="n">E</span><span class="o">=</span><span class="mf">0.</span>
+      <span class="n">FX</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+      <span class="n">FV</span><span class="o">=</span><span class="n">FX</span>
+      <span class="n">FW</span><span class="o">=</span><span class="n">FX</span>
+      <span class="n">DO</span> <span class="mi">11</span> <span class="n">ITER</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ITMAX</span>
+        <span class="n">XM</span><span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">A</span><span class="o">+</span><span class="n">B</span><span class="p">)</span>
+        <span class="n">TOL1</span><span class="o">=</span><span class="n">TOL</span><span class="o">*</span><span class="n">ABS</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">+</span><span class="n">ZEPS</span>
+        <span class="n">TOL2</span><span class="o">=</span><span class="mf">2.</span><span class="o">*</span><span class="n">TOL1</span>
+        <span class="n">IF</span><span class="p">(</span><span class="n">ABS</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">XM</span><span class="p">)</span><span class="o">.</span><span class="n">LE</span><span class="o">.</span><span class="p">(</span><span class="n">TOL2</span><span class="o">-.</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">A</span><span class="p">)))</span> <span class="n">GOTO</span> <span class="mi">3</span>
+        <span class="n">IF</span><span class="p">(</span><span class="n">ABS</span><span class="p">(</span><span class="n">E</span><span class="p">)</span><span class="o">.</span><span class="n">GT</span><span class="o">.</span><span class="n">TOL1</span><span class="p">)</span> <span class="n">THEN</span>
+          <span class="n">R</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">W</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FX</span><span class="o">-</span><span class="n">FV</span><span class="p">)</span>
+          <span class="n">Q</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">V</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FX</span><span class="o">-</span><span class="n">FW</span><span class="p">)</span>
+          <span class="n">P</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">V</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span><span class="o">-</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">W</span><span class="p">)</span><span class="o">*</span><span class="n">R</span>
+          <span class="n">Q</span><span class="o">=</span><span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="n">Q</span><span class="o">-</span><span class="n">R</span><span class="p">)</span>
+          <span class="n">IF</span><span class="p">(</span><span class="n">Q</span><span class="o">.</span><span class="n">GT</span><span class="o">.</span><span class="mf">0.</span><span class="p">)</span> <span class="n">P</span><span class="o">=-</span><span class="n">P</span>
+          <span class="n">Q</span><span class="o">=</span><span class="n">ABS</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+          <span class="n">ETEMP</span><span class="o">=</span><span class="n">E</span>
+          <span class="n">E</span><span class="o">=</span><span class="n">D</span>
+          <span class="n">IF</span><span class="p">(</span><span class="n">ABS</span><span class="p">(</span><span class="n">P</span><span class="p">)</span><span class="o">.</span><span class="n">GE</span><span class="o">.</span><span class="n">ABS</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="o">*</span><span class="n">Q</span><span class="o">*</span><span class="n">ETEMP</span><span class="p">)</span><span class="o">.</span><span class="n">OR</span><span class="o">.</span><span class="n">P</span><span class="o">.</span><span class="n">LE</span><span class="o">.</span><span class="n">Q</span><span class="o">*</span><span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">OR</span><span class="o">.</span> 
+     <span class="mi">1</span>        <span class="n">P</span><span class="o">.</span><span class="n">GE</span><span class="o">.</span><span class="n">Q</span><span class="o">*</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">X</span><span class="p">))</span> <span class="n">GOTO</span> <span class="mi">1</span>
+          <span class="n">D</span><span class="o">=</span><span class="n">P</span><span class="o">/</span><span class="n">Q</span>
+          <span class="n">U</span><span class="o">=</span><span class="n">X</span><span class="o">+</span><span class="n">D</span>
+          <span class="n">IF</span><span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">A</span><span class="o">.</span><span class="n">LT</span><span class="o">.</span><span class="n">TOL2</span> <span class="o">.</span><span class="n">OR</span><span class="o">.</span> <span class="n">B</span><span class="o">-</span><span class="n">U</span><span class="o">.</span><span class="n">LT</span><span class="o">.</span><span class="n">TOL2</span><span class="p">)</span> <span class="n">D</span><span class="o">=</span><span class="n">SIGN</span><span class="p">(</span><span class="n">TOL1</span><span class="p">,</span><span class="n">XM</span><span class="o">-</span><span class="n">X</span><span class="p">)</span>
+          <span class="n">GOTO</span> <span class="mi">2</span>
+        <span class="n">ENDIF</span>
+ <span class="mi">1</span>      <span class="n">IF</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">GE</span><span class="o">.</span><span class="n">XM</span><span class="p">)</span> <span class="n">THEN</span>
+          <span class="n">E</span><span class="o">=</span><span class="n">A</span><span class="o">-</span><span class="n">X</span>
+        <span class="n">ELSE</span>
+          <span class="n">E</span><span class="o">=</span><span class="n">B</span><span class="o">-</span><span class="n">X</span>
+        <span class="n">ENDIF</span>
+        <span class="n">D</span><span class="o">=</span><span class="n">CGOLD</span><span class="o">*</span><span class="n">E</span>
+ <span class="mi">2</span>      <span class="n">IF</span><span class="p">(</span><span class="n">ABS</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">.</span><span class="n">GE</span><span class="o">.</span><span class="n">TOL1</span><span class="p">)</span> <span class="n">THEN</span>
+          <span class="n">U</span><span class="o">=</span><span class="n">X</span><span class="o">+</span><span class="n">D</span>
+        <span class="n">ELSE</span>
+          <span class="n">U</span><span class="o">=</span><span class="n">X</span><span class="o">+</span><span class="n">SIGN</span><span class="p">(</span><span class="n">TOL1</span><span class="p">,</span><span class="n">D</span><span class="p">)</span>
+        <span class="n">ENDIF</span>
+        <span class="n">FU</span><span class="o">=</span><span class="n">F</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+        <span class="n">IF</span><span class="p">(</span><span class="n">FU</span><span class="o">.</span><span class="n">LE</span><span class="o">.</span><span class="n">FX</span><span class="p">)</span> <span class="n">THEN</span>
+          <span class="n">IF</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">GE</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="n">THEN</span>
+            <span class="n">A</span><span class="o">=</span><span class="n">X</span>
+          <span class="n">ELSE</span>
+            <span class="n">B</span><span class="o">=</span><span class="n">X</span>
+          <span class="n">ENDIF</span>
+          <span class="n">V</span><span class="o">=</span><span class="n">W</span>
+          <span class="n">FV</span><span class="o">=</span><span class="n">FW</span>
+          <span class="n">W</span><span class="o">=</span><span class="n">X</span>
+          <span class="n">FW</span><span class="o">=</span><span class="n">FX</span>
+          <span class="n">X</span><span class="o">=</span><span class="n">U</span>
+          <span class="n">FX</span><span class="o">=</span><span class="n">FU</span>
+        <span class="n">ELSE</span>
+          <span class="n">IF</span><span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">LT</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="n">THEN</span>
+            <span class="n">A</span><span class="o">=</span><span class="n">U</span>
+          <span class="n">ELSE</span>
+            <span class="n">B</span><span class="o">=</span><span class="n">U</span>
+          <span class="n">ENDIF</span>
+          <span class="n">IF</span><span class="p">(</span><span class="n">FU</span><span class="o">.</span><span class="n">LE</span><span class="o">.</span><span class="n">FW</span> <span class="o">.</span><span class="n">OR</span><span class="o">.</span> <span class="n">W</span><span class="o">.</span><span class="n">EQ</span><span class="o">.</span><span class="n">X</span><span class="p">)</span> <span class="n">THEN</span>
+            <span class="n">V</span><span class="o">=</span><span class="n">W</span>
+            <span class="n">FV</span><span class="o">=</span><span class="n">FW</span>
+            <span class="n">W</span><span class="o">=</span><span class="n">U</span>
+            <span class="n">FW</span><span class="o">=</span><span class="n">FU</span>
+          <span class="n">ELSE</span> <span class="n">IF</span><span class="p">(</span><span class="n">FU</span><span class="o">.</span><span class="n">LE</span><span class="o">.</span><span class="n">FV</span> <span class="o">.</span><span class="n">OR</span><span class="o">.</span> <span class="n">V</span><span class="o">.</span><span class="n">EQ</span><span class="o">.</span><span class="n">X</span> <span class="o">.</span><span class="n">OR</span><span class="o">.</span> <span class="n">V</span><span class="o">.</span><span class="n">EQ</span><span class="o">.</span><span class="n">W</span><span class="p">)</span> <span class="n">THEN</span>
+            <span class="n">V</span><span class="o">=</span><span class="n">U</span>
+            <span class="n">FV</span><span class="o">=</span><span class="n">FU</span>
+          <span class="n">ENDIF</span>
+        <span class="n">ENDIF</span>
+ <span class="mi">11</span>   <span class="n">CONTINUE</span>
+<span class="n">C</span>      <span class="n">PAUSE</span> <span class="s1">&#39;Brent exceed maximum iterations.&#39;</span>
+      <span class="n">WRITE</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;BRENT MAXIMUM ITERATIONS&#39;</span>
+ <span class="mi">3</span>    <span class="n">XMIN</span><span class="o">=</span><span class="n">X</span>
+      <span class="n">BRENT</span><span class="o">=</span><span class="n">FX</span>
+      <span class="n">RETURN</span>
+      <span class="n">END</span>
+<span class="n">C</span>
+      <span class="n">SUBROUTINE</span> <span class="n">MNBRAK</span><span class="p">(</span><span class="n">AX</span><span class="p">,</span><span class="n">BX</span><span class="p">,</span><span class="n">CX</span><span class="p">,</span><span class="n">FA</span><span class="p">,</span><span class="n">FB</span><span class="p">,</span><span class="n">FC</span><span class="p">,</span><span class="n">FUNC</span><span class="p">)</span>
+<span class="n">C</span>
+<span class="n">C</span> <span class="n">MNBRAK</span><span class="o">.</span><span class="n">F</span> <span class="n">FROM</span> <span class="n">NUMERICAL</span> <span class="n">RECIPES</span><span class="o">.</span>  <span class="n">MODIFIED</span> <span class="n">FOR</span> <span class="n">DOUBLE</span> <span class="n">PRECISION</span> <span class="n">ON</span> 
+<span class="n">C</span> <span class="n">MACINTOSH</span> <span class="n">COMPUTERS</span> <span class="n">BY</span> <span class="n">THEODORE</span> <span class="n">G</span><span class="o">.</span> <span class="n">CLEVELAND</span> <span class="n">MARCH</span><span class="o">-</span><span class="mi">1992</span>
+<span class="n">C</span>
+      <span class="n">IMPLICIT</span> <span class="n">REAL</span><span class="o">*</span><span class="mi">8</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">O</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span>
+      <span class="n">PARAMETER</span> <span class="p">(</span><span class="n">GOLD</span><span class="o">=</span><span class="mf">1.618034</span><span class="p">,</span> <span class="n">GLIMIT</span><span class="o">=</span><span class="mf">100.</span><span class="p">,</span> <span class="n">TINY</span><span class="o">=</span><span class="mf">1.E-20</span><span class="p">)</span>
+      <span class="n">FA</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">AX</span><span class="p">)</span>
+      <span class="n">FB</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">BX</span><span class="p">)</span>
+      <span class="n">IF</span><span class="p">(</span><span class="n">FB</span><span class="o">.</span><span class="n">GT</span><span class="o">.</span><span class="n">FA</span><span class="p">)</span><span class="n">THEN</span>
+        <span class="n">DUM</span><span class="o">=</span><span class="n">AX</span>
+        <span class="n">AX</span><span class="o">=</span><span class="n">BX</span>
+        <span class="n">BX</span><span class="o">=</span><span class="n">DUM</span>
+        <span class="n">DUM</span><span class="o">=</span><span class="n">FB</span>
+        <span class="n">FB</span><span class="o">=</span><span class="n">FA</span>
+        <span class="n">FA</span><span class="o">=</span><span class="n">DUM</span>
+      <span class="n">ENDIF</span>
+      <span class="n">CX</span><span class="o">=</span><span class="n">BX</span><span class="o">+</span><span class="n">GOLD</span><span class="o">*</span><span class="p">(</span><span class="n">BX</span><span class="o">-</span><span class="n">AX</span><span class="p">)</span>
+      <span class="n">FC</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">CX</span><span class="p">)</span>
+ <span class="mi">1</span>    <span class="n">IF</span><span class="p">(</span><span class="n">FB</span><span class="o">.</span><span class="n">GE</span><span class="o">.</span><span class="n">FC</span><span class="p">)</span><span class="n">THEN</span>
+        <span class="n">R</span><span class="o">=</span><span class="p">(</span><span class="n">BX</span><span class="o">-</span><span class="n">AX</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FB</span><span class="o">-</span><span class="n">FC</span><span class="p">)</span>
+        <span class="n">Q</span><span class="o">=</span><span class="p">(</span><span class="n">BX</span><span class="o">-</span><span class="n">CX</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">FB</span><span class="o">-</span><span class="n">FA</span><span class="p">)</span>
+        <span class="n">U</span><span class="o">=</span><span class="n">BX</span><span class="o">-</span><span class="p">((</span><span class="n">BX</span><span class="o">-</span><span class="n">CX</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span><span class="o">-</span><span class="p">(</span><span class="n">BX</span><span class="o">-</span><span class="n">AX</span><span class="p">)</span><span class="o">*</span><span class="n">R</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">2.</span><span class="o">*</span><span class="n">SIGN</span><span class="p">(</span><span class="n">MAX</span><span class="p">(</span><span class="n">ABS</span><span class="p">(</span><span class="n">Q</span><span class="o">-</span><span class="n">R</span><span class="p">),</span><span class="n">TINY</span><span class="p">),</span><span class="n">Q</span><span class="o">-</span><span class="n">R</span><span class="p">))</span>
+        <span class="n">ULIM</span><span class="o">=</span><span class="n">BX</span><span class="o">+</span><span class="n">GLIMIT</span><span class="o">*</span><span class="p">(</span><span class="n">CX</span><span class="o">-</span><span class="n">BX</span><span class="p">)</span>
+        <span class="n">IF</span><span class="p">((</span><span class="n">BX</span><span class="o">-</span><span class="n">U</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">CX</span><span class="p">)</span><span class="o">.</span><span class="n">GT</span><span class="o">.</span><span class="mf">0.</span><span class="p">)</span><span class="n">THEN</span>
+          <span class="n">FU</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+          <span class="n">IF</span><span class="p">(</span><span class="n">FU</span><span class="o">.</span><span class="n">LT</span><span class="o">.</span><span class="n">FC</span><span class="p">)</span><span class="n">THEN</span>
+            <span class="n">AX</span><span class="o">=</span><span class="n">BX</span>
+            <span class="n">FA</span><span class="o">=</span><span class="n">FB</span>
+            <span class="n">BX</span><span class="o">=</span><span class="n">U</span>
+            <span class="n">FB</span><span class="o">=</span><span class="n">FU</span>
+            <span class="n">GO</span> <span class="n">TO</span> <span class="mi">1</span>
+          <span class="n">ELSE</span> <span class="n">IF</span><span class="p">(</span><span class="n">FU</span><span class="o">.</span><span class="n">GT</span><span class="o">.</span><span class="n">FB</span><span class="p">)</span><span class="n">THEN</span>
+            <span class="n">CX</span><span class="o">=</span><span class="n">U</span>
+            <span class="n">FC</span><span class="o">=</span><span class="n">FU</span>
+            <span class="n">GO</span> <span class="n">TO</span> <span class="mi">1</span>
+          <span class="n">ENDIF</span>
+          <span class="n">U</span><span class="o">=</span><span class="n">CX</span><span class="o">+</span><span class="n">GOLD</span><span class="o">*</span><span class="p">(</span><span class="n">CX</span><span class="o">-</span><span class="n">BX</span><span class="p">)</span>
+          <span class="n">FU</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+        <span class="n">ELSE</span> <span class="n">IF</span><span class="p">((</span><span class="n">CX</span><span class="o">-</span><span class="n">U</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">U</span><span class="o">-</span><span class="n">ULIM</span><span class="p">)</span><span class="o">.</span><span class="n">GT</span><span class="o">.</span><span class="mf">0.</span><span class="p">)</span><span class="n">THEN</span>
+          <span class="n">FU</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+          <span class="n">IF</span><span class="p">(</span><span class="n">FU</span><span class="o">.</span><span class="n">LT</span><span class="o">.</span><span class="n">FC</span><span class="p">)</span><span class="n">THEN</span>
+            <span class="n">BX</span><span class="o">=</span><span class="n">CX</span>
+            <span class="n">CX</span><span class="o">=</span><span class="n">U</span>
+            <span class="n">U</span><span class="o">=</span><span class="n">CX</span><span class="o">+</span><span class="n">GOLD</span><span class="o">*</span><span class="p">(</span><span class="n">CX</span><span class="o">-</span><span class="n">BX</span><span class="p">)</span>
+            <span class="n">FB</span><span class="o">=</span><span class="n">FC</span>
+            <span class="n">FC</span><span class="o">=</span><span class="n">FU</span>
+            <span class="n">FU</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+          <span class="n">ENDIF</span>
+        <span class="n">ELSE</span> <span class="n">IF</span><span class="p">((</span><span class="n">U</span><span class="o">-</span><span class="n">ULIM</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">ULIM</span><span class="o">-</span><span class="n">CX</span><span class="p">)</span><span class="o">.</span><span class="n">GE</span><span class="o">.</span><span class="mf">0.</span><span class="p">)</span><span class="n">THEN</span>
+          <span class="n">U</span><span class="o">=</span><span class="n">ULIM</span>
+          <span class="n">FU</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+        <span class="n">ELSE</span>
+          <span class="n">U</span><span class="o">=</span><span class="n">CX</span><span class="o">+</span><span class="n">GOLD</span><span class="o">*</span><span class="p">(</span><span class="n">CX</span><span class="o">-</span><span class="n">BX</span><span class="p">)</span>
+          <span class="n">FU</span><span class="o">=</span><span class="n">FUNC</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+        <span class="n">ENDIF</span>
+        <span class="n">AX</span><span class="o">=</span><span class="n">BX</span>
+        <span class="n">BX</span><span class="o">=</span><span class="n">CX</span>
+        <span class="n">CX</span><span class="o">=</span><span class="n">U</span>
+        <span class="n">FA</span><span class="o">=</span><span class="n">FB</span>
+        <span class="n">FB</span><span class="o">=</span><span class="n">FC</span>
+        <span class="n">FC</span><span class="o">=</span><span class="n">FU</span>
+        <span class="n">GO</span> <span class="n">TO</span> <span class="mi">1</span>
+      <span class="n">ENDIF</span>
+      <span class="n">RETURN</span>
+      <span class="n">END</span>
+
+</pre></div>
+</div>
+<p>Here is the function to be minimized</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">FUNCTION</span> <span class="n">FUNC</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">C234567890</span>
+      <span class="n">IMPLICIT</span> <span class="n">REAL</span><span class="o">*</span><span class="mi">8</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">H</span><span class="p">,</span><span class="n">O</span><span class="o">-</span><span class="n">Z</span><span class="p">)</span>
+      <span class="n">DIMENSION</span> <span class="n">X</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="n">C</span>      <span class="n">FUNC</span><span class="o">=</span><span class="p">(</span><span class="mf">3.</span><span class="n">D0</span><span class="o">/</span><span class="mf">2.</span><span class="n">D0</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mf">1.</span><span class="n">D0</span><span class="o">/</span><span class="mf">2.</span><span class="n">D0</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mf">2.</span><span class="n">D0</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">FUNC</span><span class="o">=</span><span class="p">(</span><span class="mf">3.</span><span class="n">D0</span><span class="o">/</span><span class="mf">2.</span><span class="n">D0</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mf">1.</span><span class="n">D0</span><span class="o">/</span><span class="mf">2.</span><span class="n">D0</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+     <span class="mi">1</span>     <span class="o">-</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mf">2.</span><span class="n">D0</span><span class="o">*</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">RETURN</span>
+      <span class="n">END</span>
+</pre></div>
+</div>
+<p>Here is the initial values, and desired solution tolerance contained in a file named <code class="docutils literal notranslate"><span class="pre">POWELL.DAT</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="mi">2</span>  <span class="mf">0.001</span>                       <span class="n">N</span><span class="p">,</span> <span class="n">FUNCTION</span> <span class="n">TOLERANCE</span>
+ <span class="o">-</span><span class="mf">2.</span> <span class="mf">4.</span>                          <span class="n">INITIAL</span> <span class="n">STARTING</span> <span class="n">VECTOR</span>
+  <span class="mf">1.</span> <span class="mf">0.</span>                          <span class="n">INITIAL</span> <span class="n">BASIS</span>
+  <span class="mf">0.</span> <span class="mf">1.</span>
+  
+</pre></div>
+</div>
+<p>Here is the result of the program</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">POWELL</span> <span class="n">SEARCH</span> <span class="n">METHOD</span> <span class="n">FOR</span> <span class="n">MINIMIZATION</span> <span class="n">OF</span> <span class="n">F</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+ <span class="n">INITIAL</span> <span class="n">STARTING</span> <span class="n">VECTOR</span>
+ <span class="o">-</span><span class="mf">2.00000</span>      <span class="mf">4.00000</span>    
+ <span class="n">INITIAL</span> <span class="n">ORTHOGONAL</span> <span class="n">SEARCH</span> <span class="n">DIRECTION</span> <span class="n">SET</span>
+  <span class="mf">1.00000</span>      <span class="mf">0.00000</span>    
+  <span class="mf">0.00000</span>      <span class="mf">1.00000</span>    
+ <span class="n">INITIAL</span> <span class="n">FUNCTION</span> <span class="n">VALUE</span> <span class="o">=</span>   <span class="mf">26.000000000000000</span>     
+ <span class="n">BEGINNING</span> <span class="n">SEARCH</span> <span class="o">--</span> <span class="n">COMMAND</span> <span class="n">ESCAPE</span> <span class="n">TO</span> <span class="n">ABORT</span>
+ <span class="n">NORMAL</span> <span class="n">EXIT</span> <span class="n">FROM</span> <span class="n">POWELL</span> <span class="n">SEARCH</span> <span class="n">METHOD</span>
+ <span class="n">ITERATIONS</span> <span class="n">REQUIRED</span> <span class="o">=</span>           <span class="mi">3</span>
+ <span class="n">FUNCTION</span> <span class="n">TOLERANCE</span>  <span class="o">=</span>   <span class="mf">1.0000000000000000E-003</span>
+ <span class="n">POLICY</span> <span class="n">VECTOR</span> <span class="n">UPON</span> <span class="n">EXIT</span>
+  <span class="mf">1.00000</span>      <span class="mf">1.00000</span>    
+ <span class="n">FUNCTION</span> <span class="n">VALUE</span> <span class="n">UPON</span> <span class="n">EXIT</span> <span class="o">=</span>  <span class="o">-</span><span class="mf">1.0000000000000000</span>     
+</pre></div>
+</div>
+<p>Now compare to using Python packages:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1"># same function in FORTRAN above</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">acc</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">])</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;powell&#39;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: -1.000000
+         Iterations: 3
+         Function evaluations: 97
+[1.         0.99999999]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bounded-unconstrained-least-squares">
+<h3>Bounded Unconstrained Least Squares<a class="headerlink" href="#bounded-unconstrained-least-squares" title="Permalink to this headline">¶</a></h3>
+<p>An interesting unconstrained tool is a bounded least squares in <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.  You can read about it at  <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html">Bounded Least Squares</a>.  The default bounds are <span class="math notranslate nohighlight">\(-\infty,\infty\)</span>, unless set to a different range by the analyst.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+
+<span class="c1">#Rosenbrock Function</span>
+<span class="k">def</span> <span class="nf">fun_rosenbrock</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
+   
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">least_squares</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">least_squares</span><span class="p">(</span><span class="n">fun_rosenbrock</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> active_mask: array([0., 0.])
+        cost: 2.2211364862629114e-29
+         fun: array([-6.66133815e-15, -2.22044605e-16])
+        grad: array([ 1.33448809e-13, -6.66133815e-14])
+         jac: array([[-20.00000015,  10.        ],
+       [ -1.        ,   0.        ]])
+     message: &#39;`gtol` termination condition is satisfied.&#39;
+        nfev: 3
+        njev: 3
+  optimality: 1.3344880855256055e-13
+      status: 1
+     success: True
+           x: array([1., 1.])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/optimization"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="gridsearch.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Grid-Search Examples</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../decisionSupportbyLP/linearprograms.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Linear Programming for Decision Support</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Theodore G. Cleveland, Ph.D., P.E., M.ASCE, F.EWRI.<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

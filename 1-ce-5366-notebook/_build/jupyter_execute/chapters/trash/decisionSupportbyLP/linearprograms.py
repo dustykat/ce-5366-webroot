@@ -45,27 +45,28 @@ opt
 
 # ## Example using `Python-MIP`
 # 
-# Python-MIP is one of many LP solvers avaialble on the mighty internet; it is used in this course because it appears to run on a Raspberry Pi withou a lot of fuss (this is an architecture issue, for students using X86-64 machines, the Anaconda install should be just fine, and you can use any LP solver you wish)
+# Python-MIP is one of many LP solvers avaialble on the mighty internet; it is architecture specific, for students using X86-64 machines, the Anaconda install should be just fine, and you can use any LP solver you wish)
+
+# ```
+# from mip import Model, xsum, maximize, BINARY
 # 
+# p = [10, 13, 18, 31, 7, 15]
+# w = [11, 15, 20, 35, 10, 33]
+# c, I = 47, range(len(w))
 # 
-from mip import Model, xsum, maximize, BINARY
-
-p = [10, 13, 18, 31, 7, 15]
-w = [11, 15, 20, 35, 10, 33]
-c, I = 47, range(len(w))
-
-m = Model("knapsack")
-
-x = [m.add_var(var_type=BINARY) for i in I]
-
-m.objective = maximize(xsum(p[i] * x[i] for i in I))
-
-m += xsum(w[i] * x[i] for i in I) <= c
-
-m.optimize()
-
-selected = [i for i in I if x[i].x >= 0.99]
-print("selected items: {}".format(selected))
+# m = Model("knapsack")
+# 
+# x = [m.add_var(var_type=BINARY) for i in I]
+# 
+# m.objective = maximize(xsum(p[i] * x[i] for i in I))
+# 
+# m += xsum(w[i] * x[i] for i in I) <= c
+# 
+# m.optimize()
+# 
+# selected = [i for i in I if x[i].x >= 0.99]
+# print("selected items: {}".format(selected))
+# ```
 
 # ## References
 # 1. [Mirko Stojiljković (2020) Hands-On Linear Programming: Optimization With Python. Real Python (Blog Post)](https://realpython.com/linear-programming-python/)

@@ -58,13 +58,13 @@
 # 
 # The example below is verbatim from [Mirko Stojiljković (2020) Hands-On Linear Programming: Optimization With Python. Real Python (Blog Post)](https://realpython.com/linear-programming-python/)
 
-# In[1]:
+# In[2]:
 
 
 from scipy.optimize import linprog
 
 
-# In[2]:
+# In[3]:
 
 
 obj = [-1, -2]
@@ -80,14 +80,14 @@ lhs_eq = [[-1, 5]]  # Green constraint left side
 rhs_eq = [15]       # Green constraint right side
 
 
-# In[3]:
+# In[4]:
 
 
 bnd = [(0, float("inf")),  # Bounds of x
 (0, float("inf"))]  # Bounds of y
 
 
-# In[4]:
+# In[5]:
 
 
 opt = linprog(c=obj, A_ub=lhs_ineq, b_ub=rhs_ineq,
@@ -105,7 +105,7 @@ opt
 # The change in solver type produces correct output - this is typical for packages regardless of host type.  The user needs to mess with things to get it working.
 # :::
 
-# In[5]:
+# In[73]:
 
 
 from pulp import * # pulp needs to be installed into the kernel first
@@ -141,7 +141,7 @@ model +=  obj_func
 print(model)
 
 
-# In[6]:
+# In[61]:
 
 
 #Supply Constraints
@@ -150,7 +150,7 @@ for i in range(n_warehouses):
     model += lpSum(allocation[i][j] for j in range(n_customers)) <= warehouse_supply[i] , "Supply Constraints " + str(i)
 
 
-# In[7]:
+# In[62]:
 
 
 # Demand Constraints
@@ -159,13 +159,13 @@ for j in range(n_customers):
     model += lpSum(allocation[i][j] for i in range(n_warehouses)) >= cust_demands[j] , "Demand Constraints " + str(j)
 
 
-# In[8]:
+# In[63]:
 
 
 model.writeMPS("Supply_demand_prob.lp") # write problem set-up to a text file
 
 
-# In[9]:
+# In[64]:
 
 
 from pulp import GLPK # A working solver needs to be loaded explicit on ARM!
@@ -179,7 +179,7 @@ status =  LpStatus[model.status]
 print(status)
 
 
-# In[10]:
+# In[65]:
 
 
 print("Total Cost:", model.objective.value())
@@ -193,7 +193,7 @@ for v in model.variables():
         print("error couldnt find value")
 
 
-# In[11]:
+# In[66]:
 
 
 # Warehouse 1 and Warehouse 2 required capacity
@@ -236,3 +236,46 @@ for i in range(n_warehouses):
 # 4. [Gross, O (1962). A LINEAR PROGRAM OF PRAGER'S; Notes on Linear Programming and Extensions. MEMORANDUM
 # RM-2993-PR (Rand Corporation Memorandum to U.S. Air Force Research Headquarters)](https://apps.dtic.mil/sti/tr/pdf/AD0274596.pdf)
 # 
+
+# In[ ]:
+
+
+
+
+
+# ## Addendum `Python-MIP`
+# 
+# Python-MIP is one of many LP solvers avaialble on the mighty internet; it is used in this course because it appears to run on a Raspberry Pi withou a lot of fuss (this is an architecture issue, for students using X86-64 machines, the Anaconda install should be just fine, and you can use any LP solver you wish).
+# 
+# MIP means mixed integer programs, which are hard to solve efficiently.  The example below is the script to solve a knapsack problem.
+# 
+# 
+
+# In[74]:
+
+
+from mip import Model, xsum, maximize, BINARY
+
+p = [10, 13, 18, 31, 7, 15]
+w = [11, 15, 20, 35, 10, 33]
+c, I = 47, range(len(w))
+
+m = Model("knapsack")
+
+x = [m.add_var(var_type=BINARY) for i in I]
+
+m.objective = maximize(xsum(p[i] * x[i] for i in I))
+
+m += xsum(w[i] * x[i] for i in I) <= c
+
+m.optimize(solver=GLPK(msg=True))
+
+selected = [i for i in I if x[i].x >= 0.99]
+print("selected items: {}".format(selected))
+
+
+# In[ ]:
+
+
+
+
