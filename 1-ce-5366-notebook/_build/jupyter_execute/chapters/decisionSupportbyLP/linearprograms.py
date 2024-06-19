@@ -58,13 +58,13 @@
 # 
 # The example below is verbatim from [Mirko Stojiljković (2020) Hands-On Linear Programming: Optimization With Python. Real Python (Blog Post)](https://realpython.com/linear-programming-python/)
 
-# In[2]:
+# In[1]:
 
 
 from scipy.optimize import linprog
 
 
-# In[3]:
+# In[2]:
 
 
 obj = [-1, -2]
@@ -80,14 +80,14 @@ lhs_eq = [[-1, 5]]  # Green constraint left side
 rhs_eq = [15]       # Green constraint right side
 
 
-# In[4]:
+# In[3]:
 
 
 bnd = [(0, float("inf")),  # Bounds of x
 (0, float("inf"))]  # Bounds of y
 
 
-# In[5]:
+# In[4]:
 
 
 opt = linprog(c=obj, A_ub=lhs_ineq, b_ub=rhs_ineq,
@@ -105,7 +105,7 @@ opt
 # The change in solver type produces correct output - this is typical for packages regardless of host type.  The user needs to mess with things to get it working.
 # :::
 
-# In[73]:
+# In[5]:
 
 
 from pulp import * # pulp needs to be installed into the kernel first
@@ -141,7 +141,7 @@ model +=  obj_func
 print(model)
 
 
-# In[61]:
+# In[6]:
 
 
 #Supply Constraints
@@ -150,7 +150,7 @@ for i in range(n_warehouses):
     model += lpSum(allocation[i][j] for j in range(n_customers)) <= warehouse_supply[i] , "Supply Constraints " + str(i)
 
 
-# In[62]:
+# In[7]:
 
 
 # Demand Constraints
@@ -159,13 +159,13 @@ for j in range(n_customers):
     model += lpSum(allocation[i][j] for i in range(n_warehouses)) >= cust_demands[j] , "Demand Constraints " + str(j)
 
 
-# In[63]:
+# In[8]:
 
 
 model.writeMPS("Supply_demand_prob.lp") # write problem set-up to a text file
 
 
-# In[64]:
+# In[9]:
 
 
 from pulp import GLPK # A working solver needs to be loaded explicit on ARM!
@@ -179,7 +179,7 @@ status =  LpStatus[model.status]
 print(status)
 
 
-# In[65]:
+# In[10]:
 
 
 print("Total Cost:", model.objective.value())
@@ -193,7 +193,7 @@ for v in model.variables():
         print("error couldnt find value")
 
 
-# In[66]:
+# In[11]:
 
 
 # Warehouse 1 and Warehouse 2 required capacity
@@ -249,30 +249,27 @@ for i in range(n_warehouses):
 # 
 # MIP means mixed integer programs, which are hard to solve efficiently.  The example below is the script to solve a knapsack problem.
 # 
+
+# ```
+# from mip import Model, xsum, maximize, BINARY # need to install mip into the kernel first!!
 # 
-
-# In[74]:
-
-
-from mip import Model, xsum, maximize, BINARY
-
-p = [10, 13, 18, 31, 7, 15]
-w = [11, 15, 20, 35, 10, 33]
-c, I = 47, range(len(w))
-
-m = Model("knapsack")
-
-x = [m.add_var(var_type=BINARY) for i in I]
-
-m.objective = maximize(xsum(p[i] * x[i] for i in I))
-
-m += xsum(w[i] * x[i] for i in I) <= c
-
-m.optimize(solver=GLPK(msg=True))
-
-selected = [i for i in I if x[i].x >= 0.99]
-print("selected items: {}".format(selected))
-
+# p = [10, 13, 18, 31, 7, 15]
+# w = [11, 15, 20, 35, 10, 33]
+# c, I = 47, range(len(w))
+# 
+# m = Model("knapsack")
+# 
+# x = [m.add_var(var_type=BINARY) for i in I]
+# 
+# m.objective = maximize(xsum(p[i] * x[i] for i in I))
+# 
+# m += xsum(w[i] * x[i] for i in I) <= c
+# 
+# m.optimize()
+# 
+# selected = [i for i in I if x[i].x >= 0.99]
+# print("selected items: {}".format(selected))
+# ```
 
 # In[ ]:
 
