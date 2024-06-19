@@ -1,0 +1,1427 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Groundwater Water Allocation by Simulation-Optimization &#8212; Water Resources Management</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Non-Linear Programming for Decision Support" href="../decisionSupportbyNLP/nonlinearprograms.html" />
+    <link rel="prev" title="Linear Programming for Decision Support" href="../decisionSupportbyLP/linearprograms.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/WRMlogo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Water Resources Management</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Welcome to CE-5366 Water Resources Manglement
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../introduction/introduction.html">
+   Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../introduction/resourcesallocation.html">
+     Resource Allocation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../economics/economics.html">
+   Financial Planning and Management
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../economics/policyoverride.html">
+     Policy Overrides
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../simulation/simulation.html">
+   Modeling for Decision Support
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../optimization/optimization.html">
+   Optimization Modeling for Decision Support
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../optimization/1topic.html">
+     Scheduling Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../optimization/2topic.html">
+     Grid Search Methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../optimization/3topic.html">
+     Steepest Descent
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../decisionSupportbyLP/linearprograms.html">
+   Linear Programming for Decision Support
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Groundwater Water Allocation by Simulation-Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../decisionSupportbyNLP/nonlinearprograms.html">
+   Non-Linear Programming for Decision Support
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../watersupplyallocation/watersupplyallocation.html">
+   Water Supply Allocation under Uncertainty
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../waterqualityallocation/waterqualityallocation.html">
+   Water Quality Allocation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../waterqualityallocation/reactortank.html">
+     Example: Reactor-Tank System
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../qual2e/waterqualitymodels.html">
+     Water Quality Simulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../qual2e/qual2e.html">
+     QUAL2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/gwexample/gwexample.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapters/gwexample/gwexample.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chapters/gwexample/gwexample.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-bear-1979-pp-505-509">
+   Example (Bear 1979 pp.505-509)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-1-build-a-useable-groundwater-flow-model">
+     Step 1 - Build a Useable Groundwater Flow Model
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-2-create-collection-of-input-files-to-sequentially-run-to-build-up-influence-matrix">
+     Step 2 - Create collection of input files to sequentially run to build up influence matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-3-create-a-control-script-to-run-the-collection-of-inputs">
+     Step 3 - Create a control script to run the collection of inputs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-4-read-the-head-matrices-convert-to-influence-table">
+     Step 4 - Read the head matrices, convert to influence table
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#step-5-formally-build-the-lp">
+     Step 5 - Formally build the LP
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#files">
+   Files
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="groundwater-water-allocation-by-simulation-optimization">
+<h1>Groundwater Water Allocation by Simulation-Optimization<a class="headerlink" href="#groundwater-water-allocation-by-simulation-optimization" title="Permalink to this headline">¶</a></h1>
+<p>This chapter demonstrates pumping allocation based on total demands for consump- tion and availability of water for the certain aquifer, and an example of a ground- water simulation-optimization activity. The optimization model is created using linear programming for aquifer management to minimize the cost of the pumping and conveyance to a customer, to meet a water demand requirement, with constraints designed to prevent contaminated lake water from encroaching into the aquifer. The chapter is presented as a case study for a simple example to illustrate the organizational and computational steps involved.</p>
+<div class="section" id="example-bear-1979-pp-505-509">
+<h2>Example (Bear 1979 pp.505-509)<a class="headerlink" href="#example-bear-1979-pp-505-509" title="Permalink to this headline">¶</a></h2>
+<p>shows a plan view of the aquifer system being examined. The 10 km 10 km square aquifer is divided into 25 cells of (2km 2km each). Well fields in each cell are assumed to behave as if all pumping occurs at the cell centroid, and the resulting heads are averaged throughout the cell.
+The aquifer has impervious boundaries on three sides and a lake is on the forth side.
+The lake water quality is poor, so keeping the water level of the aquifer above a certain level should be taken into consideration to prevent water encroaching from the lake into the aquifer.
+Therefore, water level at the distance of 1 km and 3 km from the lake should be maintained at +0.64 m and +0.95 m respectively, where the lake level is the datum (+0.0 m).</p>
+<p>Precipitation with a rate of <span class="math notranslate nohighlight">\(N = 100 mm/yr\)</span> is replenishing the aquifer uniformly over the entire area. The entire replenishment drains through the aquifer into the lake. The aquifer is a homogeneous-isotropic aquifer and has a transmissivity of <span class="math notranslate nohighlight">\(T = 1000 m^2/day\)</span>.</p>
+<p><img alt="" src="../../_images/aquiferplan.png" /></p>
+<p>A single consumer (city) exists in Cell 18, with a demand of 7.0<span class="math notranslate nohighlight">\(Mm^3/yr\)</span>. The cost to pump water and deliver to Cell 18 is ($1.00 + $0.50/km))/<span class="math notranslate nohighlight">\(Mm^3\)</span>
+The distance from a pumping cell to cell 18 expressed in cartesian coordinates is <span class="math notranslate nohighlight">\(D_i−&gt;18 = \sqrt{(x_i − x_{18})^2 + (y_i − y_{18})^2}\)</span> where the x and y values are the coordinates to the cell centers in kilometers (using the lower right corner is the coordinate system origin).</p>
+<p>For example:</p>
+<ul class="simple">
+<li><p>The cost to pump <span class="math notranslate nohighlight">\(1~Mm^3\)</span> of water from Cell 18 is $1.00,</p></li>
+<li><p>The cost to pump <span class="math notranslate nohighlight">\(1~Mm^3\)</span> water from Cell 3 and transport it to Cell 18 is $1.00 + $3.00 = $4.00. The first monetary unit is the pumping cost and the remainder is the transport cost to deliver water to Cell 18.</p></li>
+</ul>
+<p>The management objective is to supply the demand at Cell 18 at minimum cost, while maintaining the minimal water levels in Cells 16 – 25 to protect the water quality of the aquifer (and prevent lake water from entering the aquifer).</p>
+<p>To construct the management model we can first specify the decision variables which are <span class="math notranslate nohighlight">\(P_i\)</span> the pumping rate in <span class="math notranslate nohighlight">\(M m^3\)</span> in the i − th cell. Then we need to specify the cost function</p>
+<div class="math notranslate nohighlight">
+\[ C = \sum_{i=1}^{25}(1+[\sqrt{(x_i − x_{18})^2 + (y_i − y_{18})^2}] )\times P_i \]</div>
+<p>Next is the influence on the aquifer heads (or drawdown) at location i caused by unit pumping at location j. These will form the various constraint equations. There are 25 cells in the aquifer that can have pumping, and 10 cells with restrictive constraints (the drawdown requirements).</p>
+<p>The pumping decisions affect the aquifer head, so a tool to estimate the response to the decision variables is created using a computer model of the aquifer. In the example, the system is to be operated at steady conditions and the aquifer is a homogeneous-isotropic confined aquifer, so the effect of one unit of pumping at a location can be determined external to the optimization process. First, one needs to develop a groundwater hydraulic model of the system.</p>
+<div class="section" id="step-1-build-a-useable-groundwater-flow-model">
+<h3>Step 1 - Build a Useable Groundwater Flow Model<a class="headerlink" href="#step-1-build-a-useable-groundwater-flow-model" title="Permalink to this headline">¶</a></h3>
+<p>Using concepts in <a class="reference external" href="http://54.243.252.9/ce-4363-webroot/ce4363notes/_build/html/lessons/groundwatermodels/13gwmodels.html">Cleveland, T. G. (2023) Groundwater Models in <em>notes to accompany CE 4363</em></a> a useable groundwater model for this example is listed below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sse</span><span class="p">(</span><span class="n">matrix1</span><span class="p">,</span><span class="n">matrix2</span><span class="p">):</span>
+    <span class="n">sse</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="n">nr</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix1</span><span class="p">)</span> <span class="c1"># get row count</span>
+    <span class="n">nc</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># get column count</span>
+    <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="p">):</span>
+            <span class="n">sse</span><span class="o">=</span><span class="n">sse</span><span class="o">+</span><span class="p">(</span><span class="n">matrix1</span><span class="p">[</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">]</span><span class="o">-</span><span class="n">matrix2</span><span class="p">[</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">sse</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">matrix1</span><span class="p">,</span><span class="n">matrix2</span><span class="p">):</span>
+    <span class="n">nr</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix1</span><span class="p">)</span> <span class="c1"># get row count</span>
+    <span class="n">nc</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># get column count</span>
+    <span class="c1">##print(nr,nc)</span>
+    <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="p">):</span>
+            <span class="c1">##print(ir,jc)</span>
+            <span class="n">matrix2</span><span class="p">[</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">]</span><span class="o">=</span><span class="n">matrix1</span><span class="p">[</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">matrix2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">writearray</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="n">nr</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="c1"># get row count</span>
+    <span class="n">nc</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># get column count</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="n">new_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="mi">4</span><span class="p">))</span>    
+    <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">ir</span><span class="p">,</span><span class="n">new_list</span><span class="p">[</span><span class="n">ir</span><span class="p">][:])</span>
+    <span class="k">return</span><span class="p">()</span>
+<span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">echoinput</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">infile</span> <span class="o">=</span> <span class="s2">&quot;base-case.txt&quot;</span>
+<span class="n">localfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="c1"># connect and read file for 2D gw model</span>
+<span class="n">deltax</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">deltay</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">deltaz</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">nrows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">ncols</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">tolerance</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">maxiter</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">distancex</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="n">distancex</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">distancey</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="n">distancey</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">boundarytop</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty list</span>
+<span class="n">boundarytop</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">boundarybottom</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty list</span>
+<span class="n">boundarybottom</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">boundaryleft</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty list</span>
+<span class="n">boundaryleft</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">boundaryright</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty list</span>
+<span class="n">boundaryright</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">head</span> <span class="o">=</span><span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+        <span class="n">head</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="c1">#writearray(head)</span>
+<span class="n">hydcondx</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+        <span class="n">hydcondx</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="c1">#writearray(hydcondx)</span>
+<span class="n">hydcondy</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+        <span class="n">hydcondy</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="c1">#writearray(hydcondy)</span>
+<span class="n">pumping</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+        <span class="n">pumping</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="c1">#writearray(pumping)</span>
+<span class="n">localfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># Disconnect the file</span>
+<span class="c1">##</span>
+<span class="k">if</span> <span class="n">echoinput</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--Echo Inputs--&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--head--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--Kx--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">hydcondx</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--Ky--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">hydcondy</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pumping-recharge&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">pumping</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+<span class="c1">##</span>
+<span class="n">amat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="n">bmat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="n">cmat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="n">dmat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="n">qrat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="c1">## Transmissivity Arrays</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nrows</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">jcol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ncols</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">amat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span> <span class="n">hydcondx</span><span class="p">[</span><span class="n">irow</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span><span class="o">+</span> <span class="n">hydcondx</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span>  <span class="p">])</span> <span class="o">*</span> <span class="n">deltaz</span> <span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">deltax</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">bmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span> <span class="n">hydcondx</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span><span class="o">+</span> <span class="n">hydcondx</span><span class="p">[</span><span class="n">irow</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span>  <span class="p">])</span> <span class="o">*</span> <span class="n">deltaz</span> <span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">deltax</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">cmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span> <span class="n">hydcondy</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span> <span class="n">hydcondy</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span>  <span class="p">])</span> <span class="o">*</span> <span class="n">deltaz</span> <span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">deltay</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">dmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span> <span class="n">hydcondy</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span><span class="o">+</span> <span class="n">hydcondy</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">deltaz</span> <span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">deltay</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">## Net Pumping Array</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">jcol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">):</span>
+        <span class="n">qrat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pumping</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mf">365.0</span><span class="o">*</span><span class="n">deltax</span><span class="o">*</span><span class="n">deltay</span><span class="p">)</span>
+<span class="c1">## Headold array</span>
+<span class="n">headold</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span> <span class="c1">#force a new matrix</span>
+<span class="n">headold</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="n">headold</span><span class="p">)</span> <span class="c1"># update</span>
+<span class="k">if</span> <span class="n">echoinput</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--before iterations--</span><span class="se">\n</span><span class="s2"> head&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--headold--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">headold</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--qrat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">qrat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--amat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">amat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--bmat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">bmat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--cmat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">cmat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--dmat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">dmat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+<span class="n">tolflag</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;begin iteration</span><span class="se">\n</span><span class="s2"> head&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--headold--&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">headold</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--qrat--&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">qrat</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>
+
+<span class="c1"># Boundary Conditions</span>
+
+<span class="c1"># first and last row special == no flow boundaries</span>
+    <span class="k">for</span> <span class="n">jcol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">boundarytop</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># no - flow at top</span>
+            <span class="n">head</span> <span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span>
+        <span class="k">if</span> <span class="n">boundarybottom</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span> <span class="n">jcol</span> <span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># no - flow at bottom</span>
+            <span class="n">head</span> <span class="p">[</span><span class="n">nrows</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="n">nrows</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span>
+<span class="c1"># first and last column special == no flow boundaries     </span>
+    <span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span> 
+        <span class="k">if</span>  <span class="n">boundaryleft</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span> <span class="n">irow</span> <span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">head</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">head</span> <span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># no - flow at left</span>
+        <span class="k">if</span> <span class="n">boundaryright</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span> <span class="n">irow</span> <span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> 
+            <span class="n">head</span> <span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">ncols</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span> <span class="n">irow</span> <span class="p">][</span><span class="n">ncols</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># no - flow at right</span>
+<span class="c1"># interior updates</span>
+    <span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nrows</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">jcol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ncols</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">head</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">=</span><span class="p">(</span> <span class="o">-</span><span class="n">qrat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> \
+<span class="o">+</span><span class="n">amat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">*</span><span class="n">head</span><span class="p">[</span><span class="n">irow</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span> \
+<span class="o">+</span><span class="n">bmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">*</span><span class="n">head</span><span class="p">[</span><span class="n">irow</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span> \
+<span class="o">+</span><span class="n">cmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">*</span><span class="n">head</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> \
+<span class="o">+</span><span class="n">dmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">*</span><span class="n">head</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>\
+            <span class="o">/</span><span class="p">(</span><span class="n">amat</span><span class="p">[</span> <span class="n">irow</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span><span class="o">+</span> <span class="n">bmat</span><span class="p">[</span> <span class="n">irow</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span><span class="o">+</span> <span class="n">cmat</span><span class="p">[</span> <span class="n">irow</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span><span class="o">+</span> <span class="n">dmat</span><span class="p">[</span> <span class="n">irow</span><span class="p">][</span><span class="n">jcol</span> <span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;end iteration</span><span class="se">\n</span><span class="s2"> head&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--headold--&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">headold</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--qrat--&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">qrat</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>           
+<span class="c1"># test for stopping iterations</span>
+<span class="c1">##    print(&quot;end iteration&quot;)</span>
+<span class="c1">##    writearray(head)</span>
+<span class="c1">##    print(&quot;----&quot;)</span>
+<span class="c1">##    writearray(headold)</span>
+    <span class="n">percentdiff</span> <span class="o">=</span> <span class="n">sse</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="n">headold</span><span class="p">)</span>
+
+    <span class="k">if</span>  <span class="n">percentdiff</span> <span class="o">&lt;=</span> <span class="n">tolerance</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exit iterations in velocity potential because tolerance met &quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iterations =&quot;</span> <span class="p">,</span> <span class="nb">iter</span><span class="o">+</span><span class="mi">1</span> <span class="p">)</span> <span class="p">;</span>
+        <span class="n">tolflag</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">break</span>
+    <span class="c1"># update    </span>
+    <span class="n">headold</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="n">headold</span><span class="p">)</span>
+<span class="c1"># next iteration</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;End Calculations&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iterations    = &quot;</span><span class="p">,</span><span class="nb">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Closure Error = &quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">percentdiff</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1"># special messaging to report min head to adjust pump rates</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum Head&quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input File &quot;</span><span class="p">,</span><span class="n">infile</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Head Map&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>
+<span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exit iterations in velocity potential because tolerance met 
+Iterations = 438
+End Calculations
+Iterations    =  438
+Closure Error =  0.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Minimum Head 0.0
+Input File  base-case.txt
+Head Map
+----
+0 [ 0.      2.7956  7.1792 10.4669 12.6587 13.7545 13.7545]
+1 [ 0.      2.7956  7.1792 10.4669 12.6587 13.7545 13.7545]
+2 [ 0.      2.7956  7.1792 10.4669 12.6587 13.7545 13.7545]
+3 [ 0.      2.7956  7.1792 10.4669 12.6587 13.7545 13.7545]
+4 [ 0.      2.7956  7.1792 10.4669 12.6587 13.7545 13.7545]
+5 [ 0.      2.7956  7.1792 10.4669 12.6587 13.7545 13.7545]
+6 [ 0.      2.7956  7.1792 10.4669 12.6587 13.7545 13.7545]
+----
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">base-case.txt</span></code> input file is shown below (annotations are not part of the actual file):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2000</span>
+<span class="mi">2000</span>
+<span class="mi">1</span>
+<span class="mi">7</span>
+<span class="mi">7</span>
+<span class="mf">1e-29</span>
+<span class="mi">900</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> 
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> 
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mf">2.795639</span> <span class="mf">7.1792</span> <span class="mf">10.46687</span> <span class="mf">12.65865</span> <span class="mf">13.75454</span> <span class="mf">13.75454</span> <span class="o">&lt;=</span> <span class="s2">&quot;equilibrium head distribution&quot;</span>
+<span class="mi">0</span> <span class="mf">2.795639</span> <span class="mf">7.1792</span> <span class="mf">10.46687</span> <span class="mf">12.65865</span> <span class="mf">13.75454</span> <span class="mf">13.75454</span>
+<span class="mi">0</span> <span class="mf">2.795639</span> <span class="mf">7.1792</span> <span class="mf">10.46687</span> <span class="mf">12.65865</span> <span class="mf">13.75454</span> <span class="mf">13.75454</span>
+<span class="mi">0</span> <span class="mf">2.795639</span> <span class="mf">7.1792</span> <span class="mf">10.46687</span> <span class="mf">12.65865</span> <span class="mf">13.75454</span> <span class="mf">13.75454</span>
+<span class="mi">0</span> <span class="mf">2.795639</span> <span class="mf">7.1792</span> <span class="mf">10.46687</span> <span class="mf">12.65865</span> <span class="mf">13.75454</span> <span class="mf">13.75454</span>
+<span class="mi">0</span> <span class="mf">2.795639</span> <span class="mf">7.1792</span> <span class="mf">10.46687</span> <span class="mf">12.65865</span> <span class="mf">13.75454</span> <span class="mf">13.75454</span>
+<span class="mi">0</span> <span class="mf">2.795639</span> <span class="mf">7.1792</span> <span class="mf">10.46687</span> <span class="mf">12.65865</span> <span class="mf">13.75454</span> <span class="mf">13.75454</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="o">&lt;=</span> <span class="s2">&quot;transmissivity x array&quot;</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="o">&lt;=</span> <span class="s2">&quot;transmissivity y array&quot;</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">&lt;=</span> <span class="s2">&quot;pumping - recharge array&quot;</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+</pre></div>
+</div>
+<p>Next modify the flow model to run as a <code class="docutils literal notranslate"><span class="pre">python</span></code> script in the operating system shell with a file name using the <code class="docutils literal notranslate"><span class="pre">.py</span></code> extension.  The modifications are:</p>
+<ul class="simple">
+<li><p>Take input from stdio using redirection from a file with the name of the input file:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">echoinput</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">infile</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
+<span class="n">localfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="c1"># connect and read file for 2D gw model</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Write output to an output file based on the input file name</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#writearray(head)</span>
+<span class="c1">#print(&quot;----&quot;)</span>
+<span class="n">outfile</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.out&#39;</span>
+<span class="n">localfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="c1"># connect and read file for 2D gw model</span>
+<span class="n">localfile</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">outfile</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">head</span><span class="p">)):</span>
+    <span class="n">localfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">head</span><span class="p">[</span><span class="n">row</span><span class="p">]))</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">localfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now the program can be run as a shell command, thus its control can be automated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a typical shell command</span>
+<span class="o">!</span> python3 2D-SteadyConfinedJacobi.py &lt; input0.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>base-case.txt
+</pre></div>
+</div>
+</div>
+</div>
+<p>The contents of <code class="docutils literal notranslate"><span class="pre">input0.txt</span></code> are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base</span><span class="o">-</span><span class="n">case</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>The output file is <code class="docutils literal notranslate"><span class="pre">base-case.out</span></code> and it contains:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">base</span><span class="o">-</span><span class="n">case</span><span class="o">.</span><span class="n">out</span>
+<span class="mf">0.0</span> <span class="mf">2.7956388034665838</span> <span class="mf">7.179200447302184</span> <span class="mf">10.466871680178881</span> <span class="mf">12.658652502096675</span> <span class="mf">13.754542913055573</span> <span class="mf">13.754542913055573</span>
+<span class="mf">0.0</span> <span class="mf">2.7956388034665838</span> <span class="mf">7.179200447302184</span> <span class="mf">10.466871680178881</span> <span class="mf">12.658652502096675</span> <span class="mf">13.754542913055573</span> <span class="mf">13.754542913055573</span>
+<span class="mf">0.0</span> <span class="mf">2.7956388034665838</span> <span class="mf">7.179200447302184</span> <span class="mf">10.466871680178881</span> <span class="mf">12.658652502096675</span> <span class="mf">13.754542913055573</span> <span class="mf">13.754542913055573</span>
+<span class="mf">0.0</span> <span class="mf">2.7956388034665838</span> <span class="mf">7.179200447302184</span> <span class="mf">10.466871680178881</span> <span class="mf">12.658652502096675</span> <span class="mf">13.754542913055573</span> <span class="mf">13.754542913055573</span>
+<span class="mf">0.0</span> <span class="mf">2.7956388034665838</span> <span class="mf">7.179200447302184</span> <span class="mf">10.466871680178881</span> <span class="mf">12.658652502096675</span> <span class="mf">13.754542913055573</span> <span class="mf">13.754542913055573</span>
+<span class="mf">0.0</span> <span class="mf">2.7956388034665838</span> <span class="mf">7.179200447302184</span> <span class="mf">10.466871680178881</span> <span class="mf">12.658652502096675</span> <span class="mf">13.754542913055573</span> <span class="mf">13.754542913055573</span>
+<span class="mf">0.0</span> <span class="mf">2.7956388034665838</span> <span class="mf">7.179200447302184</span> <span class="mf">10.466871680178881</span> <span class="mf">12.658652502096675</span> <span class="mf">13.754542913055573</span> <span class="mf">13.754542913055573</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-create-collection-of-input-files-to-sequentially-run-to-build-up-influence-matrix">
+<h3>Step 2 - Create collection of input files to sequentially run to build up influence matrix<a class="headerlink" href="#step-2-create-collection-of-input-files-to-sequentially-run-to-build-up-influence-matrix" title="Permalink to this headline">¶</a></h3>
+<p>The influence matrix (or technological function) (Bear (1979) pp. 496, Eqn. 12-10 (and 12-11)) is constructed by running the groundwater flow model with one well at a time active at some unit rate (herein 1 <span class="math notranslate nohighlight">\(Mm^3/yr\)</span>), the outputs of these runs (25 in total) are saved then processed further below.  For large problems this process needs to be automated, one way is to adapt the model to run unattended as below, supply a control file that contains the name of the input file to use, and another control file (OS specific) to batch submit each run and collect the output.</p>
+<p>The example herein assumes Linux and uses bash shell scripts <a class="reference external" href="https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/run-Unix-shell-script-Linux-Ubuntu-command-chmod-777-permission-steps">How to Write and Run Linux Shell Scripts</a>.  Windoze equivalents exist (see <a class="reference external" href="https://en.wikipedia.org/wiki/Batch_file">Batch Scripts on Windows - Wikipedia</a>,<a class="reference external" href="https://www.howtogeek.com/263177/how-to-write-a-batch-script-on-windows/">How to Write Windows Batch Scripts</a>.</p>
+<p>We have already demonstrated that the program can be run from a shell command; now just glue together 25 to run automatically.</p>
+<p>So we create 25 files that are nearly identical to the above input file, but with a pump operating in one of the 25 cells, name them <code class="docutils literal notranslate"><span class="pre">pump1.txt</span></code> … <code class="docutils literal notranslate"><span class="pre">pump25.txt</span></code></p>
+<p>The relevant part of <code class="docutils literal notranslate"><span class="pre">pump25.txt</span></code> is shown below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span>  <span class="mf">6E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>  <span class="o">&lt;&lt;&lt;</span>  <span class="n">The</span> <span class="n">pump</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">cell</span> <span class="n">adjacent</span> <span class="n">to</span> <span class="n">the</span> <span class="n">lake</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-3-create-a-control-script-to-run-the-collection-of-inputs">
+<h3>Step 3 - Create a control script to run the collection of inputs<a class="headerlink" href="#step-3-create-a-control-script-to-run-the-collection-of-inputs" title="Permalink to this headline">¶</a></h3>
+<p>Next a control file to convey the input file name to the program, in this case <code class="docutils literal notranslate"><span class="pre">input25.txt</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pump25</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Finally a shell script to run 26 instances for the model, and collect the input <code class="docutils literal notranslate"><span class="pre">run_cases.sc</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># semi-colon means wait until process is completed</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input0</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">base</span><span class="o">-</span><span class="n">case</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input1</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump1</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input2</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump2</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input3</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump3</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input4</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump4</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input5</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump5</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input6</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump6</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input7</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump7</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input8</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump8</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input9</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump9</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input10</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump10</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input11</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump11</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input12</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump12</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input13</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump13</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input14</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump14</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input15</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump15</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input16</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump16</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input17</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump17</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input18</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump18</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input19</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump19</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input20</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump20</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input21</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump21</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input22</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump22</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input23</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump23</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input24</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump24</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">python3</span> <span class="mi">2</span><span class="n">D</span><span class="o">-</span><span class="n">SteadyConfinedJacobi</span><span class="o">.</span><span class="n">py</span> <span class="o">&lt;</span> <span class="n">input25</span><span class="o">.</span><span class="n">txt</span> <span class="o">&gt;</span> <span class="n">pump25</span><span class="o">.</span><span class="n">out</span><span class="p">;</span>
+<span class="n">cat</span> <span class="n">base</span><span class="o">-</span><span class="n">case</span><span class="o">.</span><span class="n">out</span> <span class="n">pump1</span><span class="o">.</span><span class="n">out</span> <span class="n">pump2</span><span class="o">.</span><span class="n">out</span> <span class="n">pump3</span><span class="o">.</span><span class="n">out</span> <span class="n">pump4</span><span class="o">.</span><span class="n">out</span> <span class="n">pump5</span><span class="o">.</span><span class="n">out</span> <span class="n">pump6</span><span class="o">.</span><span class="n">out</span> <span class="n">pump7</span><span class="o">.</span><span class="n">out</span> <span class="n">pump8</span><span class="o">.</span><span class="n">out</span> <span class="n">pump9</span><span class="o">.</span><span class="n">out</span> <span class="n">pump10</span><span class="o">.</span><span class="n">out</span> <span class="n">pump11</span><span class="o">.</span><span class="n">out</span> <span class="n">pump12</span><span class="o">.</span><span class="n">out</span> <span class="n">pump13</span><span class="o">.</span><span class="n">out</span> <span class="n">pump14</span><span class="o">.</span><span class="n">out</span> <span class="n">pump15</span><span class="o">.</span><span class="n">out</span> <span class="n">pump16</span><span class="o">.</span><span class="n">out</span> <span class="n">pump17</span><span class="o">.</span><span class="n">out</span> <span class="n">pump18</span><span class="o">.</span><span class="n">out</span> <span class="n">pump19</span><span class="o">.</span><span class="n">out</span> <span class="n">pump20</span><span class="o">.</span><span class="n">out</span> <span class="n">pump21</span><span class="o">.</span><span class="n">out</span> <span class="n">pump22</span><span class="o">.</span><span class="n">out</span> <span class="n">pump23</span><span class="o">.</span><span class="n">out</span> <span class="n">pump24</span><span class="o">.</span><span class="n">out</span> <span class="n">pump25</span><span class="o">.</span><span class="n">out</span> <span class="o">&gt;</span> <span class="n">influence</span><span class="o">-</span><span class="n">matrices</span><span class="o">-</span><span class="n">out1</span><span class="o">.</span><span class="n">txt</span><span class="p">;</span>
+<span class="c1"># now kill all the intermediate files</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="n">base</span><span class="o">-</span><span class="n">case</span><span class="o">.</span><span class="n">out</span> <span class="n">pump1</span><span class="o">.</span><span class="n">out</span> <span class="n">pump2</span><span class="o">.</span><span class="n">out</span> <span class="n">pump3</span><span class="o">.</span><span class="n">out</span> <span class="n">pump4</span><span class="o">.</span><span class="n">out</span> <span class="n">pump5</span><span class="o">.</span><span class="n">out</span> <span class="n">pump6</span><span class="o">.</span><span class="n">out</span> <span class="n">pump7</span><span class="o">.</span><span class="n">out</span> <span class="n">pump8</span><span class="o">.</span><span class="n">out</span> <span class="n">pump9</span><span class="o">.</span><span class="n">out</span> <span class="n">pump10</span><span class="o">.</span><span class="n">out</span> <span class="n">pump11</span><span class="o">.</span><span class="n">out</span> <span class="n">pump12</span><span class="o">.</span><span class="n">out</span> <span class="n">pump13</span><span class="o">.</span><span class="n">out</span> <span class="n">pump14</span><span class="o">.</span><span class="n">out</span> <span class="n">pump15</span><span class="o">.</span><span class="n">out</span> <span class="n">pump16</span><span class="o">.</span><span class="n">out</span> <span class="n">pump17</span><span class="o">.</span><span class="n">out</span> <span class="n">pump18</span><span class="o">.</span><span class="n">out</span> <span class="n">pump19</span><span class="o">.</span><span class="n">out</span> <span class="n">pump20</span><span class="o">.</span><span class="n">out</span> <span class="n">pump21</span><span class="o">.</span><span class="n">out</span> <span class="n">pump22</span><span class="o">.</span><span class="n">out</span> <span class="n">pump23</span><span class="o">.</span><span class="n">out</span> <span class="n">pump24</span><span class="o">.</span><span class="n">out</span> <span class="n">pump25</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>The shell script runs the base case and 25 pumping cases then collects output into a single file called <code class="docutils literal notranslate"><span class="pre">influence-matrices-out1.txt</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the shell script -- be patient, it takes awhile</span>
+<span class="o">!</span> ./run_cases.sc 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we have built the <code class="docutils literal notranslate"><span class="pre">influence-matrices-out1.txt</span></code> file, that contains the equilibrium heads for each pump. We can examine the file using a system command <code class="docutils literal notranslate"><span class="pre">cat</span></code></p>
+</div>
+<div class="section" id="step-4-read-the-head-matrices-convert-to-influence-table">
+<h3>Step 4 - Read the head matrices, convert to influence table<a class="headerlink" href="#step-4-read-the-head-matrices-convert-to-influence-table" title="Permalink to this headline">¶</a></h3>
+<p>First we will read the heads we computed above, then determine drawdowns from any unit pumping. then create an influence table structure which will become constraint sets in the LP model.</p>
+<p>The influence table structure is:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="text-align:left head"><p>pump1</p></th>
+<th class="text-align:left head"><p>pump2</p></th>
+<th class="text-align:left head"><p>…</p></th>
+<th class="text-align:left head"><p>pump25</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cell 1</p></td>
+<td class="text-align:left"><p>ddn1-1</p></td>
+<td class="text-align:left"><p>ddn1-2</p></td>
+<td class="text-align:left"><p>…</p></td>
+<td class="text-align:left"><p>ddn1-25</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cell 2</p></td>
+<td class="text-align:left"><p>ddn2-1</p></td>
+<td class="text-align:left"><p>ddn2-2</p></td>
+<td class="text-align:left"><p>…</p></td>
+<td class="text-align:left"><p>ddn2-25</p></td>
+</tr>
+</tbody>
+</table>
+<p>In this example will have 25 rows, 25 columns - the script is shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Connect to the head files</span>
+<span class="c1"># file contains a heading, then an array</span>
+<span class="n">infile</span> <span class="o">=</span> <span class="s2">&quot;influence-matrices-out1.txt&quot;</span>
+<span class="n">localfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="c1"># connect and read file for 2D gw model</span>
+<span class="n">biglist</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># read database</span>
+<span class="k">for</span> <span class="n">ipump</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+        <span class="n">biglist</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+
+<span class="c1"># create an empty response matrix</span>
+<span class="n">response</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span> <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">)]</span> <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">26</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+            <span class="n">response</span><span class="p">[</span><span class="n">ip</span><span class="p">][</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">]</span><span class="o">=</span><span class="n">biglist</span><span class="p">[</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">]</span> <span class="o">-</span> <span class="n">biglist</span><span class="p">[</span><span class="n">ip</span><span class="o">*</span><span class="mi">7</span><span class="o">+</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">]</span>
+<span class="c1"># response is now the unit DDN matrix</span>
+
+<span class="n">ddn</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">icell</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span> <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span> <span class="c1"># the LP influence array</span>
+<span class="c1"># map to locate cellID and grid coordinate</span>
+<span class="n">cellloc</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>\
+           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>\
+           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>\
+           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>\
+           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span>
+<span class="c1"># now write matrix into LP influence form</span>
+<span class="k">for</span> <span class="n">icell</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span> <span class="c1"># 25 cell model</span>
+    <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span> <span class="c1"># 25 possible pumping locations</span>
+        <span class="n">ddn</span><span class="p">[</span><span class="n">icell</span><span class="p">][</span><span class="n">ip</span><span class="p">]</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="n">ip</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">cellloc</span><span class="p">[</span><span class="n">icell</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="n">cellloc</span><span class="p">[</span><span class="n">icell</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+        
+<span class="c1"># ddn is the cell-by cell drawdown for each pump - this is what we will send to the LP solver</span>
+<span class="c1"># write it to a file</span>
+
+<span class="n">outfile</span> <span class="o">=</span> <span class="s1">&#39;influence-table&#39;</span> <span class="o">+</span> <span class="s1">&#39;.out&#39;</span>
+<span class="n">localfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span><span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="c1"># connect and read file for 2D gw model</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+    <span class="n">localfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">ddn</span><span class="p">[</span><span class="n">row</span><span class="p">]))</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">localfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">verbatim</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="n">verbatim</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ddn</span><span class="p">)</span> <span class="c1"># check if object was built</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="step-5-formally-build-the-lp">
+<h3>Step 5 - Formally build the LP<a class="headerlink" href="#step-5-formally-build-the-lp" title="Permalink to this headline">¶</a></h3>
+<p>Using guidance from <a class="reference external" href="https://realpython.com/linear-programming-python/">Mirko Stojiljković (2020). Hands-On Linear Programming: Optimization With Python</a> we construct a LP to send to the SciPy linear program tool</p>
+<p><strong>Build the Cost Vector</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1">#Set to True for lots-o-output</span>
+<span class="c1"># build the cost model</span>
+<span class="c1"># build the cost coefficient vector</span>
+<span class="n">xdist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span> <span class="c1"># position of grid centers in horozontal direction</span>
+<span class="n">ydist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span> <span class="c1"># position of grid centers in vertical direction</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># cell center Cell 18 - horizontal</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># cell center Cell 18 - vertical</span>
+<span class="n">cost</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list to store the cost coefficients</span>
+<span class="c1"># cell location map</span>
+<span class="n">cellloc</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>\
+           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span>\
+           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span>\
+           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>\
+           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span>
+<span class="k">for</span> <span class="n">icell</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+    <span class="n">part1</span> <span class="o">=</span> <span class="n">xdist</span><span class="p">[</span><span class="n">cellloc</span><span class="p">[</span><span class="n">icell</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x0</span>
+    <span class="n">part2</span> <span class="o">=</span> <span class="n">ydist</span><span class="p">[</span><span class="n">cellloc</span><span class="p">[</span><span class="n">icell</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">y0</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">part1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">part2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">cost</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">distance</span><span class="p">)</span>
+
+<span class="c1"># cost now contains cost coefficients for the LP, decisions are the pump rates, this will be passed to the objective function</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Build the constraints</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the influence table</span>
+<span class="n">infile</span><span class="o">=</span><span class="s1">&#39;influence-table.out&#39;</span>
+<span class="n">localfile</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">tableau</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># 25 rows in the influence matrix, goes to top of the LP structure</span>
+<span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">):</span>
+    <span class="n">tableau</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">25</span><span class="p">):</span>
+    <span class="n">tableau</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">demand</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span> <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span> <span class="c1"># a row of ones!</span>
+<span class="n">tableau</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">demand</span><span class="p">)</span>
+<span class="c1"># force zeros pumping in cells 21-25</span>
+<span class="n">row27</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span>
+<span class="n">row28</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span>
+<span class="n">row29</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span>
+<span class="n">row30</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span>
+<span class="n">row31</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span>
+<span class="n">row27</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">row28</span><span class="p">[</span><span class="mi">21</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">row29</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">row30</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">row31</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="c1"># append these to the tableau</span>
+<span class="n">tableau</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row27</span><span class="p">)</span>
+<span class="n">tableau</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row28</span><span class="p">)</span>
+<span class="n">tableau</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row29</span><span class="p">)</span>
+<span class="n">tableau</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row30</span><span class="p">)</span>
+<span class="n">tableau</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row31</span><span class="p">)</span>
+<span class="c1"># print the tableau</span>
+<span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tableau</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">tableau</span><span class="p">[</span><span class="n">i</span><span class="p">][:])</span>
+<span class="c1"># the tableau contains the LP constraint matrix, now build the corresponding RHS</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Build RHS Vector</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build the constraint RHS vector (SciPy uses less-than for inequality)</span>
+<span class="c1"># drawdown constraints</span>
+<span class="c1"># demand constraints</span>
+<span class="c1"># non-negative constraints</span>
+
+<span class="n">rhs_ineq</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">6.22</span><span class="p">,</span><span class="mf">6.22</span><span class="p">,</span><span class="mf">6.22</span><span class="p">,</span><span class="mf">6.22</span><span class="p">,</span><span class="mf">6.22</span><span class="p">,</span><span class="mf">2.15</span><span class="p">,</span><span class="mf">2.15</span><span class="p">,</span><span class="mf">2.15</span><span class="p">,</span><span class="mf">2.15</span><span class="p">,</span><span class="mf">2.15</span><span class="p">]</span> <span class="c1"># drawdown constraints</span>
+<span class="n">rhs_eq</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">,</span><span class="mf">0.00</span><span class="p">]</span> <span class="c1"># force zero cells 21-25</span>
+
+<span class="c1"># now list slice to populate rest</span>
+
+<span class="n">lhs_ineq</span> <span class="o">=</span> <span class="n">tableau</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">25</span><span class="p">][:]</span> <span class="c1"># part of tableau for drawdown and demand</span>
+<span class="n">lhs_eq</span> <span class="o">=</span> <span class="n">tableau</span><span class="p">[</span><span class="mi">25</span><span class="p">:</span><span class="mi">31</span><span class="p">][:]</span> <span class="c1"># part of tableau for forced zeros</span>
+
+<span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="c1"># print the tableau</span>
+<span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Inequality RHS&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lhs_ineq</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">lhs_ineq</span><span class="p">[</span><span class="n">i</span><span class="p">][:])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Equality RHS&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lhs_eq</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">lhs_eq</span><span class="p">[</span><span class="n">i</span><span class="p">][:])</span>
+<span class="c1"># the pieces are in SciPy structure, now complete the LP</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Load the optimizer package</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">linprog</span> <span class="c1"># load the package</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Set some options</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">myoptions</span><span class="o">=</span><span class="nb">dict</span><span class="p">({</span><span class="s2">&quot;maxiter&quot;</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="s2">&quot;tol&quot;</span><span class="p">:</span> <span class="mf">1e-9</span><span class="p">,</span><span class="s2">&quot;autoscale&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">})</span>
+<span class="c1">#myoptions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Upper/lower bound the variables, note the constructor notation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bnd</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">)]</span> <span class="c1"># set bounds 0-infnty</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Now the money shot; run the optimizer</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">opt</span> <span class="o">=</span> <span class="n">linprog</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">cost</span><span class="p">,</span> <span class="n">A_ub</span><span class="o">=</span><span class="n">lhs_ineq</span><span class="p">,</span> <span class="n">b_ub</span><span class="o">=</span><span class="n">rhs_ineq</span><span class="p">,</span>
+<span class="o">...</span>               <span class="n">A_eq</span><span class="o">=</span><span class="n">lhs_eq</span><span class="p">,</span> <span class="n">b_eq</span><span class="o">=</span><span class="n">rhs_eq</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bnd</span><span class="p">,</span>
+<span class="o">...</span>               <span class="n">method</span><span class="o">=</span><span class="s2">&quot;interior-point&quot;</span><span class="p">,</span><span class="n">options</span><span class="o">=</span><span class="n">myoptions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+    <span class="n">opt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Capture Output</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># check for solution</span>
+<span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Optimal Solution Found&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cost : &#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pumpage Cell&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39; = &#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">3</span><span class="p">))</span>
+        <span class="nb">sum</span><span class="o">=</span><span class="nb">sum</span><span class="o">+</span><span class="n">opt</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total Pumpage :&#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="nb">sum</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal Solution Found
+Cost :  13.73
+Pumpage Cell 1  =  0.0
+Pumpage Cell 2  =  0.0
+Pumpage Cell 3  =  0.0
+Pumpage Cell 4  =  0.0
+Pumpage Cell 5  =  0.0
+Pumpage Cell 6  =  0.0
+Pumpage Cell 7  =  0.0
+Pumpage Cell 8  =  0.0
+Pumpage Cell 9  =  0.0
+Pumpage Cell 10  =  0.0
+Pumpage Cell 11  =  0.0
+Pumpage Cell 12  =  0.0
+Pumpage Cell 13  =  0.0
+Pumpage Cell 14  =  0.0
+Pumpage Cell 15  =  0.0
+Pumpage Cell 16  =  0.912
+Pumpage Cell 17  =  1.902
+Pumpage Cell 18  =  1.603
+Pumpage Cell 19  =  2.163
+Pumpage Cell 20  =  0.42
+Pumpage Cell 21  =  0.0
+Pumpage Cell 22  =  0.0
+Pumpage Cell 23  =  0.0
+Pumpage Cell 24  =  0.0
+Pumpage Cell 25  =  0.0
+Total Pumpage : 7.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Construct an input file to test the solution</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert solution into input file fragment for a simulation run</span>
+<span class="n">recharge</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1">#m/yr</span>
+<span class="n">pumpage</span> <span class="o">=</span> <span class="mf">1.0e6</span> <span class="c1">#Mm^3/yr</span>
+<span class="n">dxdy</span> <span class="o">=</span> <span class="mi">2000</span><span class="o">*</span><span class="mi">2000</span>
+<span class="n">Rin</span> <span class="o">=</span> <span class="n">dxdy</span><span class="o">*</span><span class="n">recharge</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mf">1e6</span><span class="o">-</span><span class="n">Rin</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">Rin</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+512024.387
+1501557.195
+1203376.832
+1762958.847
+20082.739
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+-400000.0
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>400000.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using the miracle of cut-and-paste, create an input file for the groundwater simulator.</p>
+<p>Save in file `pumpOpt.txt</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+<span class="o">...</span>
+<span class="o">...</span>
+
+<span class="mf">2920.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span> <span class="mf">1000.0</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="mf">512024.387</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="mf">1501557.195</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="mf">1203376.832</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="mf">1762958.847</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="mf">20082.739</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+<span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span> <span class="o">-</span><span class="mf">4E05</span>
+</pre></div>
+</div>
+<p>And run a simulation to check that heads are large enough to satisfy hydraulic constraints.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sse</span><span class="p">(</span><span class="n">matrix1</span><span class="p">,</span><span class="n">matrix2</span><span class="p">):</span>
+    <span class="n">sse</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="n">nr</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix1</span><span class="p">)</span> <span class="c1"># get row count</span>
+    <span class="n">nc</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># get column count</span>
+    <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="p">):</span>
+            <span class="n">sse</span><span class="o">=</span><span class="n">sse</span><span class="o">+</span><span class="p">(</span><span class="n">matrix1</span><span class="p">[</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">]</span><span class="o">-</span><span class="n">matrix2</span><span class="p">[</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">sse</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">matrix1</span><span class="p">,</span><span class="n">matrix2</span><span class="p">):</span>
+    <span class="n">nr</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix1</span><span class="p">)</span> <span class="c1"># get row count</span>
+    <span class="n">nc</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># get column count</span>
+    <span class="c1">##print(nr,nc)</span>
+    <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nc</span><span class="p">):</span>
+            <span class="c1">##print(ir,jc)</span>
+            <span class="n">matrix2</span><span class="p">[</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">]</span><span class="o">=</span><span class="n">matrix1</span><span class="p">[</span><span class="n">ir</span><span class="p">][</span><span class="n">jc</span><span class="p">]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">matrix2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">writearray</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="n">nr</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span> <span class="c1"># get row count</span>
+    <span class="n">nc</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># get column count</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="n">new_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="mi">6</span><span class="p">))</span>    
+    <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nr</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">ir</span><span class="p">,</span><span class="n">new_list</span><span class="p">[</span><span class="n">ir</span><span class="p">][:])</span>
+    <span class="k">return</span><span class="p">()</span>
+<span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">echoinput</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">infile</span> <span class="o">=</span> <span class="s2">&quot;pumpOpt.txt&quot;</span>
+<span class="n">localfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="c1"># connect and read file for 2D gw model</span>
+<span class="n">deltax</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">deltay</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">deltaz</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">nrows</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">ncols</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">tolerance</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">maxiter</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+<span class="n">distancex</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="n">distancex</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">distancey</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="n">distancey</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">boundarytop</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty list</span>
+<span class="n">boundarytop</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">boundarybottom</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty list</span>
+<span class="n">boundarybottom</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">boundaryleft</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty list</span>
+<span class="n">boundaryleft</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">boundaryright</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#empty list</span>
+<span class="n">boundaryright</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="n">head</span> <span class="o">=</span><span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+        <span class="n">head</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="c1">#writearray(head)</span>
+<span class="n">hydcondx</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+        <span class="n">hydcondx</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="c1">#writearray(hydcondx)</span>
+<span class="n">hydcondy</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+        <span class="n">hydcondy</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="c1">#writearray(hydcondy)</span>
+<span class="n">pumping</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># empty list</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+        <span class="n">pumping</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">localfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()])</span>
+<span class="c1">#writearray(pumping)</span>
+<span class="n">localfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># Disconnect the file</span>
+<span class="c1">##</span>
+<span class="k">if</span> <span class="n">echoinput</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--Echo Inputs--&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--head--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--Kx--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">hydcondx</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--Ky--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">hydcondy</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pumping-recharge&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">pumping</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+<span class="c1">##</span>
+<span class="n">amat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="n">bmat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="n">cmat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="n">dmat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="n">qrat</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+<span class="c1">## Transmissivity Arrays</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nrows</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">jcol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ncols</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">amat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span> <span class="n">hydcondx</span><span class="p">[</span><span class="n">irow</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span><span class="o">+</span> <span class="n">hydcondx</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span>  <span class="p">])</span> <span class="o">*</span> <span class="n">deltaz</span> <span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">deltax</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">bmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span> <span class="n">hydcondx</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span><span class="o">+</span> <span class="n">hydcondx</span><span class="p">[</span><span class="n">irow</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span>  <span class="p">])</span> <span class="o">*</span> <span class="n">deltaz</span> <span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">deltax</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">cmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span> <span class="n">hydcondy</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span> <span class="n">hydcondy</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span>  <span class="p">])</span> <span class="o">*</span> <span class="n">deltaz</span> <span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">deltay</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">dmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span> <span class="n">hydcondy</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span><span class="o">+</span> <span class="n">hydcondy</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">deltaz</span> <span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">deltay</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1">## Net Pumping Array</span>
+<span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">jcol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">):</span>
+        <span class="n">qrat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pumping</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">deltax</span><span class="o">*</span><span class="n">deltay</span><span class="p">)</span><span class="o">/</span><span class="mf">365.</span>
+<span class="c1">## Headold array</span>
+<span class="n">headold</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">jc</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">)]</span> <span class="k">for</span> <span class="n">ir</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span> <span class="c1">#force a new matrix</span>
+<span class="n">headold</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="n">headold</span><span class="p">)</span> <span class="c1"># update</span>
+<span class="k">if</span> <span class="n">echoinput</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--before iterations--</span><span class="se">\n</span><span class="s2"> head&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--headold--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">headold</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--qrat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">qrat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--amat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">amat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--bmat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">bmat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--cmat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">cmat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--dmat--&quot;</span><span class="p">)</span>
+    <span class="n">writearray</span><span class="p">(</span><span class="n">dmat</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+<span class="n">tolflag</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxiter</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;begin iteration</span><span class="se">\n</span><span class="s2"> head&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--headold--&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">headold</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--qrat--&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">qrat</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>
+
+<span class="c1"># Boundary Conditions</span>
+
+<span class="c1"># first and last row special == no flow boundaries</span>
+    <span class="k">for</span> <span class="n">jcol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ncols</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">boundarytop</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># no - flow at top</span>
+            <span class="n">head</span> <span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span>
+        <span class="k">if</span> <span class="n">boundarybottom</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span> <span class="n">jcol</span> <span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># no - flow at bottom</span>
+            <span class="n">head</span> <span class="p">[</span><span class="n">nrows</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="n">nrows</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span>
+<span class="c1"># first and last column special == no flow boundaries     </span>
+    <span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">):</span> 
+        <span class="k">if</span>  <span class="n">boundaryleft</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span> <span class="n">irow</span> <span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">head</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">head</span> <span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># no - flow at left</span>
+        <span class="k">if</span> <span class="n">boundaryright</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span> <span class="n">irow</span> <span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> 
+            <span class="n">head</span> <span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">ncols</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span> <span class="n">irow</span> <span class="p">][</span><span class="n">ncols</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># no - flow at right</span>
+<span class="c1"># interior updates</span>
+    <span class="k">for</span> <span class="n">irow</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nrows</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">jcol</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ncols</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">head</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">=</span><span class="p">(</span> <span class="o">-</span><span class="n">qrat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span> \
+<span class="o">+</span><span class="n">amat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">*</span><span class="n">head</span><span class="p">[</span><span class="n">irow</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span> \
+<span class="o">+</span><span class="n">bmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">*</span><span class="n">head</span><span class="p">[</span><span class="n">irow</span><span class="o">+</span><span class="mi">1</span><span class="p">][</span><span class="n">jcol</span>  <span class="p">]</span> \
+<span class="o">+</span><span class="n">cmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">*</span><span class="n">head</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> \
+<span class="o">+</span><span class="n">dmat</span><span class="p">[</span><span class="n">irow</span><span class="p">][</span><span class="n">jcol</span><span class="p">]</span><span class="o">*</span><span class="n">head</span><span class="p">[</span><span class="n">irow</span>  <span class="p">][</span><span class="n">jcol</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>\
+            <span class="o">/</span><span class="p">(</span><span class="n">amat</span><span class="p">[</span> <span class="n">irow</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span><span class="o">+</span> <span class="n">bmat</span><span class="p">[</span> <span class="n">irow</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span><span class="o">+</span> <span class="n">cmat</span><span class="p">[</span> <span class="n">irow</span><span class="p">][</span><span class="n">jcol</span> <span class="p">]</span><span class="o">+</span> <span class="n">dmat</span><span class="p">[</span> <span class="n">irow</span><span class="p">][</span><span class="n">jcol</span> <span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;end iteration</span><span class="se">\n</span><span class="s2"> head&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--headold--&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">headold</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--qrat--&quot;</span><span class="p">)</span>
+        <span class="n">writearray</span><span class="p">(</span><span class="n">qrat</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>           
+<span class="c1"># test for stopping iterations</span>
+<span class="c1">##    print(&quot;end iteration&quot;)</span>
+<span class="c1">##    writearray(head)</span>
+<span class="c1">##    print(&quot;----&quot;)</span>
+<span class="c1">##    writearray(headold)</span>
+    <span class="n">percentdiff</span> <span class="o">=</span> <span class="n">sse</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="n">headold</span><span class="p">)</span>
+
+    <span class="k">if</span>  <span class="n">percentdiff</span> <span class="o">&lt;=</span> <span class="n">tolerance</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exit iterations in velocity potential because tolerance met &quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iterations =&quot;</span> <span class="p">,</span> <span class="nb">iter</span><span class="o">+</span><span class="mi">1</span> <span class="p">)</span> <span class="p">;</span>
+        <span class="n">tolflag</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">break</span>
+    <span class="c1"># update    </span>
+    <span class="n">headold</span> <span class="o">=</span> <span class="n">update</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="n">headold</span><span class="p">)</span>
+<span class="c1"># next iteration</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;End Calculations&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Iterations    = &quot;</span><span class="p">,</span><span class="nb">iter</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Closure Error = &quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">percentdiff</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1"># special messaging to report min head to adjust pump rates</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum Head&quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1">#</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Head Map&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>
+<span class="n">writearray</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exit iterations in velocity potential because tolerance met 
+Iterations = 602
+End Calculations
+Iterations    =  602
+Closure Error =  0.0
+Minimum Head 0.0
+Head Map
+----
+0 [0.       0.900774 1.730159 4.733309 6.853596 7.934611 7.934611]
+1 [0.       0.900774 1.730159 4.733309 6.853596 7.934611 7.934611]
+2 [0.       0.741014 0.9592   4.520283 6.796976 7.919736 7.919736]
+3 [0.       0.719567 0.9592   4.495757 6.798398 7.931731 7.931731]
+4 [0.       0.772946 0.9592   4.609255 6.873238 7.981169 7.981169]
+5 [0.       1.059157 2.325424 5.012936 7.008237 8.042649 8.042649]
+6 [0.       1.059157 2.325424 5.012936 7.008237 8.042649 8.042649]
+----
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now recall the original specifications, heads in first two columns were supposed to be bigger than <span class="math notranslate nohighlight">\(0.64 m\)</span> and <span class="math notranslate nohighlight">\(0.95 m\)</span>, respectively - indeed these requirements are met. Total pumpage is supposed to be <span class="math notranslate nohighlight">\(7.0 Mm^3/day\)</span>, which was also verified just after the LP solver is applied. The cost of this solution is 13.73 monetary units.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-5333-systems-webroot/3-Readings/BearChapter12/BearChapter12.pdf">Bear (1979). Hydraulics of Groundwater Chapter 12, Example 2 </a></p></li>
+<li><p><a class="reference external" href="https://realpython.com/linear-programming-python/">Mirko Stojiljković (2020). Hands-On Linear Programming: Optimization With Python</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-4363-webroot/ce4363notes/_build/html/lessons/groundwatermodels/13gwmodels.html">Cleveland, T. G. (2023) Groundwater Models in <em>notes to accompany CE 4363</em></a></p></li>
+</ol>
+</div>
+<div class="section" id="files">
+<h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-5333-systems-webroot/ce5366notes/chapters/gwexample/">Directory containing files for this example</a></p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/gwexample"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../decisionSupportbyLP/linearprograms.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Linear Programming for Decision Support</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../decisionSupportbyNLP/nonlinearprograms.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Non-Linear Programming for Decision Support</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Theodore G. Cleveland, Ph.D., P.E., M.ASCE, F.EWRI.<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
